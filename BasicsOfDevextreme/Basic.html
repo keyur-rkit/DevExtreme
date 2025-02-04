@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic</title>
+
+    <!-- Jquery -->
+    <script type="text/javascript" src="/Scripts/jquery-3.5.1.min.js"></script>
+
+    <!-- DevExtreme theme -->
+    <link rel="stylesheet" href="/Content/dx.dark.css">
+
+    <!-- DevExtreme library -->
+    <script type="text/javascript" src="/Scripts/dx.all.js"></script>
+
+</head>
+
+<body class="dx-viewport">
+    <div id="dateContainer" style="margin: 20px;"></div>
+
+    <script>
+        $(document).ready(function () {
+            const birthday = new Date('7/15/2004');
+
+            // $('#dateContainer').dxDateBox({
+            //     type: 'date',
+            //     value: birthday
+            // });
+
+            $("#dateContainer").dxDateBox();
+
+            // Get a Widget Instance
+            var dateContainerInstance = $('#dateContainer').dxDateBox("instance");
+
+            // Set Options
+            dateContainerInstance.option("type", "date");
+            dateContainerInstance.option("value", birthday);
+
+            // Get Options
+            console.log(dateContainerInstance.option("value"));
+            console.log(dateContainerInstance.option("type"));
+
+            // Call Methods
+            dateContainerInstance.open();
+
+            // Handle Events
+            dateContainerInstance.option({
+                onChange: function (e) {
+                    console.log("Date value changed");
+                }
+            });
+
+            // Destroy a Widget
+            // $("#dateContainer").dxDateBox("dispose");
+            // $("#dateContainer").remove();
+
+        });
+    </script>
+</body>
+
+</html>
