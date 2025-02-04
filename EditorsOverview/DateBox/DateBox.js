@@ -52,6 +52,12 @@
         opened: true,
     });
 
+    $('#dateBox2').dxDateBox({
+        onkeydown: (e) => {
+            console.log(`${e.event.key}`)
+        }
+    });
+
     // instance method
     var dateBoxInstance = $("#dateBox").dxDateBox("instance");
     var timeBoxInstance = $("#timeBox").dxDateBox("instance");
@@ -75,21 +81,17 @@
         console.log("New value:", e.value);
     });
 
-    // Subscribe to multiple events
-    dateBoxInstance.on({
-        opened: function () { console.log("DateBox opened") },
-        closed: function () { console.log("DateBox closed") }
+    //// Subscribe to multiple events
+    //dateBoxInstance.on({
+    //    opened: () => { console.log("DateBox opened") },
+    //    closed: () => { console.log("DateBox closed") }
+    //});
+
+    datetimeBoxInstance.on("keyDown", function (e) {
+            console.log(`${e.event.key} Enter key pressed`);
     });
 
-    //dateBoxInstance.off("opened");
-
-    //datetimeBoxInstance.on("", function (e) {
-    //        console.log(`${e.event.key} Enter key pressed`);
-    //});
-
-    //datetimeBoxInstance.onkeydown((e) => {
-    //    console.log(`${e.event.key} Enter key pressed`);
-    //});
+    //dateBoxInstance.off("keyDown");
 
     // dateBoxInstance.dispose();
     // $("#dateBox").remove();
