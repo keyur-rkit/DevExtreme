@@ -60,7 +60,7 @@
     dateBoxInstance.focus(); // focus method
     setTimeout(function () {
         datetimeBoxInstance.close(); // close method
-        dateBoxInstance.blur(); // bulr method
+        dateBoxInstance.blur(); // blur method
 
         dateBoxInstance.beginUpdate(); // beginUpdate method
         dateBoxInstance.option("value", new Date()); // options method to set value

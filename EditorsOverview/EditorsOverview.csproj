@@ -115,6 +115,8 @@
     <Content Include="DropDownBox\DropDownBox.html" />
     <Content Include="DropDownBox\DropDownBox.js" />
     <Content Include="index.html" />
+    <Content Include="NumberBox\NumberBox.html" />
+    <Content Include="NumberBox\NumberBox.js" />
     <Content Include="Scripts\cldr.js" />
     <Content Include="Scripts\cldr\event.js" />
     <Content Include="Scripts\cldr\supplemental.js" />
