@@ -3,11 +3,11 @@
 
     $('#dateBox').dxDateBox({
         type: 'date', // date time datetime
-        acceptCustomValue: false,
+        acceptCustomValue: true,
         accessKey: 't',
         applyValueMode: 'useButtons', // default: instantly
         max: new Date(),
-        min: new Date(1900, 0, 1),
+        min: new Date(01/01/2000),
         dateOutOfRangeMessage: 'date is out of range',
         disabled: true, 
         disabledDates: [
@@ -38,7 +38,7 @@
     $('#timeBox').dxDateBox({
         type: 'time',
         interval: 10, // default 30
-        pickerType: 'rollers', // native calendar rollers list
+        //pickerType: 'rollers', // native calendar rollers list
         value: now,
     });
 
@@ -50,12 +50,6 @@
         invalidDateMessage: 'Date or time is invalid',
         maxLength: 6,
         opened: true,
-    });
-
-    $('#dateBox2').dxDateBox({
-        onkeydown: (e) => {
-            console.log(`${e.event.key}`)
-        }
     });
 
     // instance method
@@ -77,19 +71,36 @@
     const clearButton = dateBoxInstance.getButton("clear");
     console.log(clearButton);
 
-    dateBoxInstance.on("valueChanged", function (e) {
+    dateBoxInstance.on("valueChanged", (e) => {
         console.log("New value:", e.value);
     });
 
     //// Subscribe to multiple events
+    //// giving error in jQuery
     //dateBoxInstance.on({
     //    opened: () => { console.log("DateBox opened") },
     //    closed: () => { console.log("DateBox closed") }
     //});
 
-    datetimeBoxInstance.on("keyDown", function (e) {
+    datetimeBoxInstance.on("keyDown", (e) => {
             console.log(`${e.event.key} Enter key pressed`);
     });
+
+    dateBoxInstance.on("copy", () => {
+        console.log("date copied");
+        //navigator.clipboard.writeText("");
+    });
+
+    dateBoxInstance.on("cut", () => {
+        console.log("date cut");
+    });
+
+    dateBoxInstance.on("paste", () => {
+        console.log("date pasted");
+        //navigator.clipboard.writeText("");
+    });
+
+
 
     //dateBoxInstance.off("keyDown");
 
