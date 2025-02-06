@@ -1,13 +1,80 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>index</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+    <!-- Jquery -->
+    <script type="text/javascript" src="/Scripts/jquery-3.5.1.min.js"></script>
+
+    <!-- DevExtreme theme -->
+    <link rel="stylesheet" href="/Content/dx.dark.css">
+
+    <!-- DevExtreme library -->
+    <script type="text/javascript" src="/Scripts/dx.all.js"></script>
+
+    <style>
+        /* Centering content*/
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+    </style>
 </head>
 <body>
-    <a href="./CheckBox/CheckBox.html">Check Box</a>
-    <a href="./DateBox/DateBox.html">Date Box</a>
-    <a href="./DropDownBox/DropDownBox.html">Drop Down Box</a>
-    <a href="./NumberBox/NumberBox.html">Number Box</a>
+    <div class="container">
+        <h1>
+            Editors – Overview
+        </h1>
+        <div id="checkBoxLink"></div>
+        <div id="dateBoxLink"></div>
+        <div id="dropDownBoxLink"></div>
+        <div id="numberBoxLink"></div>
+    </div>
+
+    <script>
+        $(function () {
+            $("#checkBoxLink").dxButton({
+                text: "Check Box",
+                onClick: function () {
+                    window.location.href = "./CheckBox/CheckBox.html";
+                }
+            });
+
+            $("#dateBoxLink").dxButton({
+                text: "Date Box",
+                onClick: function () {
+                    window.location.href = "./DateBox/DateBox.html";
+                }
+            });
+
+            $("#dropDownBoxLink").dxButton({
+                text: "Drop Down Box",
+                onClick: function () {
+                    window.location.href = "./DropDownBox/DropDownBox.html";
+                }
+            });
+
+            $("#numberBoxLink").dxButton({
+                text: "Number Box",
+                onClick: function () {
+                    window.location.href = "./NumberBox/NumberBox.html";
+                }
+            });
+        });
+    </script>
 </body>
 </html>
