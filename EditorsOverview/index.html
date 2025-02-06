@@ -43,6 +43,8 @@
         <div id="dateBoxLink"></div>
         <div id="dropDownBoxLink"></div>
         <div id="numberBoxLink"></div>
+        <div id="selectBoxLink"></div>
+        <div id="textAreaLink"></div>
     </div>
 
     <script>
@@ -72,6 +74,20 @@
                 text: "Number Box",
                 onClick: function () {
                     window.location.href = "./NumberBox/NumberBox.html";
+                }
+            });
+
+            $("#selectBoxLink").dxButton({
+                text: "Select Box",
+                onClick: function () {
+                    window.location.href = "./SelectBox/SelectBox.html";
+                }
+            });
+
+            $("#textAreaLink").dxButton({
+                text: "Text Area",
+                onClick: function () {
+                    window.location.href = "./TextArea/TextArea.html";
                 }
             });
         });
