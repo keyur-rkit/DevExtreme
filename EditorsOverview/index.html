@@ -5,19 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Index</title>
     <!-- Jquery -->
-    <script type="text/javascript" src="/Scripts/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript" src="/EditorsOverview/Scripts/jquery-3.5.1.min.js"></script>
 
     <!-- DevExtreme theme -->
-    <link rel="stylesheet" href="/Content/dx.dark.css">
+    <link rel="stylesheet" href="/EditorsOverview/Content/dx.dark.css">
 
     <!-- DevExtreme library -->
-    <script type="text/javascript" src="/Scripts/dx.all.js"></script>
+    <script type="text/javascript" src="/EditorsOverview/Scripts/dx.all.js"></script>
 
     <style>
         /* Centering content*/
         body {
             font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
+            background-color: #2a2a2a;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -32,6 +32,17 @@
             border-radius: 8px;
         }
 
+        .innerContainer{
+            width: 600px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .innerContainer > div {
+            margin: 5px;
+        }
+
     </style>
 </head>
 <body>
@@ -39,12 +50,15 @@
         <h1>
             Editors – Overview
         </h1>
-        <div id="checkBoxLink"></div>
-        <div id="dateBoxLink"></div>
-        <div id="dropDownBoxLink"></div>
-        <div id="numberBoxLink"></div>
-        <div id="selectBoxLink"></div>
-        <div id="textAreaLink"></div>
+        <div class="innerContainer">
+            <div id="checkBoxLink"></div>
+            <div id="dateBoxLink"></div>
+            <div id="dropDownBoxLink"></div>
+            <div id="numberBoxLink"></div>
+            <div id="selectBoxLink"></div>
+            <div id="textAreaLink"></div>
+            <div id="textBoxLink"></div>
+        </div>
     </div>
 
     <script>
@@ -88,6 +102,13 @@
                 text: "Text Area",
                 onClick: function () {
                     window.location.href = "./TextArea/TextArea.html";
+                }
+            });
+
+            $("#textBoxLink").dxButton({
+                text: "Text Box",
+                onClick: function () {
+                    window.location.href = "./TextBox/TextBox.html";
                 }
             });
         });
