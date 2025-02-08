@@ -67,6 +67,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Button\Button.html" />
+    <Content Include="Button\Button.js" />
+    <Content Include="Button\discord.svg" />
     <Content Include="CheckBox\CheckBox.html" />
     <Content Include="CheckBox\CheckBox.js" />
     <Content Include="Content\dx-diagram.css" />

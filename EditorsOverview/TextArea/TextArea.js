@@ -10,7 +10,7 @@
         autoResizeEnabled: true, // default : false
         maxHeight: "200px",
         minHeight: "10px",
-        maxLength: "100px",
+        maxLength: 10, // dont allow px
         stylingMode: 'underlined',
         placeholder: 'underlined Text Area',
     });

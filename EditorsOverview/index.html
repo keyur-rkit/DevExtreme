@@ -70,6 +70,9 @@
             <div id="textAreaLink"></div>
             <div id="textBoxLink"></div>
             <div id="buttonLink"></div>
+            <div id="fileUploaderLink"></div>
+            <div id="validationLink"></div>
+            <div id="radioGroupLink"></div>
         </div>
     </div>
 
@@ -128,6 +131,27 @@
                 text: "Button",
                 onClick: function () {
                     window.location.href = "./Button/Button.html";
+                }
+            });
+
+            $("#fileUploaderLink").dxButton({
+                text: "File Uploader",
+                onClick: function () {
+                    window.location.href = "./FileUploader/FileUploader.html";
+                }
+            });
+
+            $("#validationLink").dxButton({
+                text: "Validation",
+                onClick: function () {
+                    window.location.href = "./Validation/Validation.html";
+                }
+            });
+
+            $("#radioGroupLink").dxButton({
+                text: "Radio Group",
+                onClick: function () {
+                    window.location.href = "./RadioGroup/RadioGroup.html";
                 }
             });
         });

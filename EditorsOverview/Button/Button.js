@@ -1,10 +1,33 @@
 $(document).ready(function () {
 
+    $("#textBox1").dxTextBox({
+        width:200,
+    }).dxValidator({
+        validationGroup: "dummyGroup",
+        validationRules: [{
+            type: "required",
+            message: "this is required field",
+        }]
+    });
+
+    $("#textBox2").dxTextBox({
+        width: 200,
+    }).dxValidator({
+        validationGroup: "dummyGroup",
+        validationRules: [{
+            type: "required",
+            message: "this is also required field",
+        }]
+    });
+
     $("#button1").dxButton({
         stylingMode: 'contained',
-        text: 'Contained',
+        text: 'Validate',
         type: 'normal',
         icon: 'preferences',
+        onClick: () => {
+            DevExpress.validationEngine.validateGroup("dummyGroup");
+        },
     });
 
     $("#button2").dxButton({
@@ -12,6 +35,7 @@ $(document).ready(function () {
         text: 'Text',
         type: 'success',
         icon: 'palette',
+
     });
 
     $("#button3").dxButton({
@@ -25,6 +49,9 @@ $(document).ready(function () {
         stylingMode: 'contained',
         text: 'Contained',
         type: 'danger',
+        onClick: () => {
+            DevExpress.ui.notify("error message", "error", 1000); // "info", "warning", "error", "success".
+        },
     });
 
 })

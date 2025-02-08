@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>File Uploader</title>
+
+    <!-- Jquery -->
+    <script type="text/javascript" src="../Scripts/jquery-3.5.1.min.js"></script>
+
+    <!-- DevExtreme theme -->
+    <link rel="stylesheet" href="../Content/dx.dark.css">
+
+    <!-- DevExtreme library -->
+    <script type="text/javascript" src="../Scripts/dx.all.js"></script>
+
+    <style>
+        #dropArea {
+            width: 300px;
+            height: 150px;
+            background-color: #1f1d1d;
+            border-width: 2px;
+            border-style: dashed;
+            padding: 10px;
+            border-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            font-size: medium;
+        }
+
+        .container{
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body class="dx-viewport">
+    <h1>FileUploader Demo</h1>
+    <p>For file uploading flow:</p>
+    <div id="fileUploader" style="margin: 10px"></div>
+
+    <p>For file drop area :</p>
+    <div class="container">
+        <div id="dropArea" style="margin: 10px">
+            <p id="dropAreaText">Drop img</p>
+        </div>
+        <div id="fileUploader2" style="margin: 10px"></div>
+    </div>
+
+
+
+    <script src="FileUploader.js"></script>
+</body>
+
+</html>
