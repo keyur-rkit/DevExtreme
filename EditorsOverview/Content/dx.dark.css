@@ -1595,7 +1595,7 @@
 }
 .dx-field-label {
   float: left;
-  width: 40%;
+  /* width: 40%; */
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

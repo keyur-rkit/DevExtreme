@@ -37,7 +37,7 @@ $(document).ready(function () {
     });
 
     $("#dob").dxDateBox({
-        displayFormat: 'dd/MM/yyy',
+        displayFormat: 'dd/MM/yyyy',
         useMaskBehavior: true,
     }).dxValidator({
         validationRules: [{

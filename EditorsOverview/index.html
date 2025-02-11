@@ -73,6 +73,7 @@
             <div id="fileUploaderLink"></div>
             <div id="validationLink"></div>
             <div id="radioGroupLink"></div>
+            <div id="demoLink"></div>
         </div>
     </div>
 
@@ -152,6 +153,13 @@
                 text: "Radio Group",
                 onClick: function () {
                     window.location.href = "./RadioGroup/RadioGroup.html";
+                }
+            });
+
+            $("#demoLink").dxButton({
+                text: "Demo",
+                onClick: function () {
+                    window.location.href = "./Demo/Demo.html";
                 }
             });
         });
