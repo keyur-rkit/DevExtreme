@@ -15,12 +15,25 @@
     <!-- DevExtreme library -->
     <script type="text/javascript" src="../Scripts/dx.all.js"></script>
 
+    <style>
+        .container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        #profilePhoto {
+            width: 200px;
+            height: 200px;
+            border: 5px solid rgb(33, 32, 32);
+        }
+    </style>
+
 </head>
 
 <body class='dx-viewport'>
-    <!-- <h1>College Application Form</h1> -->
+    <h1>College Application Form</h1>
     <form id="form" action="">
-        <div id="dx-fieldset">
+        <div class="dx-fieldset">
             <div class="dx-fieldset-header">Personal Information</div>
             <div class="dx-field">
                 <div class="dx-field-label">Full Name</div>
@@ -30,8 +43,9 @@
             </div>
             <div class="dx-field">
                 <div class="dx-field-label">Profile Photo</div>
-                <div class="dx-field-value">
-                    <div id="profileImg"></div>
+                <div class="dx-field-value container">
+                    <div id="uploadProfileImg"></div>
+                    <img id="profilePhoto" src="#" alt="drop or upload img" />
                 </div>
             </div>
             <div class="dx-field">
@@ -58,6 +72,9 @@
                     <div id="email"></div>
                 </div>
             </div>
+        </div>
+        <div class="dx-fieldset">
+            <div class="dx-fieldset-header">Address Information</div>
             <div class="dx-field">
                 <div class="dx-field-label">Address</div>
                 <div class="dx-field-value">
@@ -71,19 +88,19 @@
                 </div>
             </div>
             <div class="dx-field">
-                <div class="dx-field-label">Pincode</div>
+                <div class="dx-field-label">City</div>
                 <div class="dx-field-value">
-                    <div id="pincode"></div>
+                    <div id="city"></div>
                 </div>
             </div>
-            <div class="dx-fieldset">
-                <div class="dx-field">
-                    <div class="dx-field-label">
-                        <div id="termsAndConditions"></div>
-                    </div>
-                    <div class="dx-field-value">
-                        <div id="register"></div>
-                    </div>
+        </div>
+        <div class="dx-fieldset">
+            <div class="dx-field">
+                <div class="dx-field-label">
+                    <div id="termsAndConditions"></div>
+                </div>
+                <div class="dx-field-value">
+                    <div id="register"></div>
                 </div>
             </div>
         </div>
