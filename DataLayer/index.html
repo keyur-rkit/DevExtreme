@@ -1,0 +1,113 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DataLayer</title>
+    <!-- Jquery -->
+    <!-- <script type="text/javascript" src="./Scripts/jquery-3.5.1.min.js"></script> -->
+
+    <!-- DevExtreme theme -->
+    <!-- <link rel="stylesheet" href="./Content/dx.dark.css"> -->
+
+    <!-- DevExtreme library -->
+    <!-- <script type="text/javascript" src="./Scripts/dx.all.js"></script> -->
+
+    <!-- Jquery -->
+    <script
+      type="text/javascript"
+      src="/DataLayer/Scripts/jquery-3.5.1.min.js"
+    ></script>
+
+    <!-- DevExtreme theme -->
+    <link rel="stylesheet" href="/DataLayer/Content/dx.dark.css" />
+
+    <!-- DevExtreme library -->
+    <script type="text/javascript" src="/DataLayer/Scripts/dx.all.js"></script>
+
+    <style>
+      /* Centering content*/
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #2a2a2a;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      .container {
+        text-align: center;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+      }
+
+      .innerContainer {
+        width: 600px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .innerContainer > div {
+        margin: 5px;
+        font-size: larger;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Data Layer</h1>
+
+      <div class="innerContainer">
+        <div id="arrayStoreLink"></div>
+        <div id="customStoreLink"></div>
+        <div id="dataSourceLink"></div>
+        <div id="localStoreLink"></div>
+        <div id="queryLink"></div>
+      </div>
+    </div>
+
+    <script>
+      $(function () {
+        $("#arrayStoreLink").dxButton({
+          text: "ArrayStore",
+          onClick: function () {
+            window.location.href = "./ArrayStore/ArrayStore.html";
+          },
+        });
+
+        $("#customStoreLink").dxButton({
+          text: "CustomStore",
+          onClick: function () {
+            window.location.href = "./CustomStore/CustomStore.html";
+          },
+        });
+
+        $("#dataSourceLink").dxButton({
+          text: "DataSource",
+          onClick: function () {
+            window.location.href = "./DataSource/DataSource.html";
+          },
+        });
+
+        $("#localStoreLink").dxButton({
+          text: "LocalStore",
+          onClick: function () {
+            window.location.href = "./LocalStore/LocalStore.html";
+          },
+        });
+
+        $("#queryLink").dxButton({
+          text: "Query",
+          onClick: function () {
+            window.location.href = "./Query/Query.html";
+          },
+        });
+      });
+    </script>
+  </body>
+</html>

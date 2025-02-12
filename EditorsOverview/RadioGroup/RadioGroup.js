@@ -27,7 +27,7 @@ $(document).ready(function () {
             else if (e.value.id === 4 || e.value.id === 5) {
                 notifyType = 'error';
             } else {
-                notifyType = 'info';
+                notifyType = 'warning';
             }
 
             DevExpress.ui.notify({

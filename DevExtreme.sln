@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EditorsOverview", "EditorsO
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasicsOfDevextreme", "BasicsOfDevextreme\BasicsOfDevextreme.csproj", "{704599BB-1B7B-4E43-969F-89F9C27FD5E6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLayer", "DataLayer\DataLayer.csproj", "{1EC60429-A6FA-44DF-AE0B-C8774352A509}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{704599BB-1B7B-4E43-969F-89F9C27FD5E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{704599BB-1B7B-4E43-969F-89F9C27FD5E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{704599BB-1B7B-4E43-969F-89F9C27FD5E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EC60429-A6FA-44DF-AE0B-C8774352A509}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EC60429-A6FA-44DF-AE0B-C8774352A509}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EC60429-A6FA-44DF-AE0B-C8774352A509}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EC60429-A6FA-44DF-AE0B-C8774352A509}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
