@@ -107,7 +107,6 @@
         }),
         valueExpr: 'id',
         displayExpr: 'name',
-        acceptCustomValue: true,
         searchEnabled: true,
         showDataBeforeSearch: true,
         minSearchLength: 2, // Minimum search length before search begins

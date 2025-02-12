@@ -116,48 +116,63 @@
         hint: 'Enter your Address',
         stylingMode: commonStylingMode,
         placeholder: 'Address Line',
+
+        autoResizeEnabled: true, // default : false
+        maxHeight: "60px",
+    }).dxValidator({
+        validationRules: [{
+            type: 'required',
+            message: 'Address Line is required',
+        }]
     });
 
-    $("#state").dxSelectBox({
+    $("#state").dxDropDownBox({
         hint: 'Select your state',
         stylingMode: commonStylingMode,
         placeholder: 'Gujarat',
 
         dataSource: new DevExpress.data.CustomStore({
             loadMode: "raw", // Loads raw JSON data
-            key: "code", // Unique key for identifying records
             load: async () => {
                 try {
-                    const response = await fetch("https://mocki.io/v1/35e6c288-3772-4816-891d-1c36e03339fc");
+                    const response = await fetch("https://dummyjson.com/c/69c6-8ac3-4c26-a69f");
                     return await response.json();
                 } catch {
                     return [];
                 }
             },
         }),
-        valueExpr: 'name',
-        displayExpr: 'name',
 
-        acceptCustomValue: true,
-        searchEnabled: true,
-        showDataBeforeSearch: true,
-        noDataText: "No state found",  // when no results are found
-        searchExpr: 'name', // Search expression to filter items
-        searchMode: 'startswith', // Search mode (contains or startswith)
-        searchTimeout: 100, // Timeout for search (in milliseconds)
+        contentTemplate: (e) => {
+            const $list = $("<div>").dxList({
+                dataSource: e.component.option("dataSource"),
+                selectionMode: "single",
+                searchEnabled: true,
+                onSelectionChanged: (selectionEvent) => {
+                    console.log(selectionEvent);
+                    var selectedValue = selectionEvent.addedItems;
+                    e.component.option('value', selectedValue)
+                    e.component.close();
+                },
+            });
+            return $list;
+        },
 
         // for districts into city selectBox
         onValueChanged: async function (e) {
-            const selectedState = e.value;
+            const selectedState  = e.value[0];
+            // console.log(selectedState);
+
             // Find the state object from our data
             const cityData = await $.getJSON("city.json");
             const cityForState = cityData.find(item => item.state === selectedState);
 
             if (cityForState) {
+                var cityInstance = $("#city").dxSelectBox("instance");
                 // Update the city select box's data source with the corresponding districts
-                $("#city").dxSelectBox("instance").option("dataSource", cityForState.districts);
+                cityInstance.option("dataSource", cityForState.districts);
                 // reset the city select box's value
-                $("#city").dxSelectBox("instance").option("value", null);
+                cityInstance.option("value", null);
             }
         }
 
@@ -175,7 +190,6 @@
 
         dataSource: [],
 
-        acceptCustomValue: true,
         searchEnabled: true,
         showDataBeforeSearch: true,
         noDataText: "No city found",  // when no results are found
@@ -217,7 +231,7 @@
             phoneNumber: $("#phoneNumber").dxTextBox("instance").option("value"),
             email: $("#email").dxTextBox("instance").option("value"),
             address: $("#address").dxTextArea("instance").option("value"),
-            state: $("#state").dxSelectBox("instance").option("value"),
+            state: $("#state").dxDropDownBox("instance").option("value"),
             city: $("#city").dxSelectBox("instance").option("value"),
             termsAccepted: $("#termsAndConditions").dxCheckBox("instance").option("value"),
         };
