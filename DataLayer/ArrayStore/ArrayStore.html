@@ -1,26 +1,70 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Array Store</title>
 
-    <!-- Jquery -->
-    <script
-      type="text/javascript"
-      src="../Scripts/jquery-3.5.1.min.js"
-    ></script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Array Store</title>
 
-    <!-- DevExtreme theme -->
-    <link rel="stylesheet" href="../Content/dx.dark.css" />
+  <!-- Jquery -->
+  <script type="text/javascript" src="../Scripts/jquery-3.5.1.min.js"></script>
 
-    <!-- DevExtreme library -->
-    <script type="text/javascript" src="../Scripts/dx.all.js"></script>
-  </head>
+  <!-- DevExtreme theme -->
+  <link rel="stylesheet" href="../Content/dx.dark.css" />
 
-  <body class="dx-viewport">
+  <!-- DevExtreme library -->
+  <script type="text/javascript" src="../Scripts/dx.all.js"></script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #2a2a2a;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      text-align: center;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+    }
+
+    .innerContainer {
+      width: 600px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .innerContainer>div {
+      margin: 5px;
+      font-size: larger;
+    }
+  </style>
+</head>
+
+<body class="">
+  <div class="container">
     <h1>Array Store Demo</h1>
+    <div class="innerContainer">
+      <div id="load"></div>
+      <div id="insert"></div>
+      <div id="update"></div>
+      <div id="remove"></div>
+      <div id="push"></div>
+      <div id="clear"></div>
+      <div id="getByKey"></div>
+      <div id="totalCount"></div>
+      <div id="other"></div>
 
-    <script src="ArrayStore.js"></script>
-  </body>
+    </div>
+  </div>
+
+  <script src="ArrayStore.js"></script>
+</body>
+
 </html>

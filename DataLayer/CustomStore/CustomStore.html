@@ -15,12 +15,47 @@
     <!-- DevExtreme library -->
     <script type="text/javascript" src="../Scripts/dx.all.js"></script>
 
+    <style>
+        .container {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            color: black;
+        }
+
+        .innerContainer {
+            width: 600px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .innerContainer>div {
+            margin: 5px;
+            font-size: larger;
+        }
+    </style>
 
 </head>
 
 <body class="dx-viewport">
-    <h1>Custom Store Demo</h1>
+    <div class="container">
+        <h1>Custom Store Demo</h1>
+        <div class="innerContainer">
+            <div id="load"></div>
+            <div id="insert"></div>
+            <div id="update"></div>
+            <div id="remove"></div>
+            <div id="push"></div>
+            <div id="clear"></div>
+            <div id="getByKey"></div>
+            <div id="totalCount"></div>
+            <div id="other"></div>
 
+        </div>
+    </div>
+    <div id="list"></div>
 
     <script src="CustomStore.js"></script>
 </body>
