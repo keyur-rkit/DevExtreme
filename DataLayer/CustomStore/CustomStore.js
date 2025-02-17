@@ -3,10 +3,10 @@
 
   var animeDataCustomStore = new DevExpress.data.CustomStore({
     key: "id",
-    loadMode: "raw",
-    cacheRawData: true, // Caches the raw data
+    loadMode: "raw", // Loads the raw data
+    // cacheRawData: true, // Caches the raw data
     //// useDefaultSearch: true, // Enables the default search
-    load: () => {
+    load: ({ skip = 5 }) => {
       return $.getJSON(dummyUrl);
     },
 
@@ -67,20 +67,55 @@
     },
   });
 
-  $("#gridContainer").dxDataGrid({
-    dataSource: animeDataCustomStore,
-    columns: [
-      { dataField: "id", caption: "ID", width: 50 },
-      { dataField: "name", caption: "Name" },
-      { dataField: "anime", caption: "Anime" },
-      { dataField: "genre", caption: "Genre" },
-    ],
-    editing: {
-      mode: "row",
-      allowUpdating: true,
-      allowDeleting: true,
-      allowAdding: true,
+  // works with loadMode = "raw" only
+  var loadOption = {
+    // group: ["genre"], // Group by genre
+    // groupSummary: [
+    //   {
+    //     selector: "id",
+    //     summaryType: "count",
+    //     displayFormat: "Total: {0}",
+    //   },
+    // ], // Summary of the group
+    // skip: 1,
+    // take: 5,
+    // sort: [{ selector: "name", desc: false }],
+    // filter: ["genre", "=", "Action"],
+    // totalSummary: [
+    //   {
+    //     selector: "id",
+    //     summaryType: "count",
+    //     displayFormat: "Total Count: {0}",
+    //   },
+    // ],
+  };
+
+  $("#applyLoadOption").dxButton({
+    text: "Apply Load Option",
+    onClick: () => {
+      animeDataCustomStore.load(loadOption).done((data) => {
+        console.log(data);
+        gridInstance.option("dataSource", data);
+      });
     },
-    // filterRow: { visible: true },
   });
+
+  var gridInstance = $("#gridContainer")
+    .dxDataGrid({
+      dataSource: animeDataCustomStore,
+      columns: [
+        { dataField: "id", caption: "ID", width: 50 },
+        { dataField: "name", caption: "Name" },
+        { dataField: "anime", caption: "Anime" },
+        { dataField: "genre", caption: "Genre" },
+      ],
+      editing: {
+        mode: "row",
+        allowUpdating: true,
+        allowDeleting: true,
+        allowAdding: true,
+      },
+      // filterRow: { visible: true },
+    })
+    .dxDataGrid("instance");
 });
