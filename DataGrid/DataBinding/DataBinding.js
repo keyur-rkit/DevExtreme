@@ -1,4 +1,4 @@
-﻿$(document).ready(() => {
+$(document).ready(() => {
   var onePieceData = [
     {
       id: 1,
@@ -330,148 +330,86 @@
     },
   ];
 
-  var query = DevExpress.data.query(onePieceData);
+  var dummyUrl = "https://67adeabb9e85da2f020bb443.mockapi.io/anime";
 
-  $("#avg").dxButton({
-    text: "Average Bounty",
-    onClick: () => {
-      query.avg("bounty").done((result) => {
-        console.log(`Average Bounty: ${result}`);
+  $("#gridContainer").dxDataGrid({
+    dataSource: onePieceData,
+    keyExpr: "id",
+    columns: [
+      {
+        dataField: "id",
+        width: 50,
+      },
+      "name",
+      "power",
+      "firstAppearance",
+      "bounty",
+    ],
+    showBorders: true,
+    paging: {
+      pageSize: 5,
+    },
+  });
+
+  var customStore = new DevExpress.data.CustomStore({
+    key: "id",
+    loadMode: "raw",
+    load: () => {
+      return $.ajax({
+        url: dummyUrl,
+        method: "GET",
+      });
+    },
+    insert: (values) => {
+      return $.ajax({
+        url: dummyUrl,
+        method: "POST",
+        data: values,
+      });
+    },
+    update: (key, values) => {
+      return $.ajax({
+        url: `${dummyUrl}/${key}`,
+        method: "PUT",
+        data: values,
       });
     },
   });
 
-  $("#count").dxButton({
-    text: "Count",
-    onClick: () => {
-      query.count().done((result) => {
-        console.log(`Count: ${result}`);
-      });
-    },
-  });
-
-  $("#groupBy").dxButton({
-    text: "Group By",
-    onClick: () => {
-      var groupedQuery = query.groupBy("age");
-      console.log(groupedQuery.toArray());
-    },
-  });
-
-  $("#max").dxButton({
-    text: "Max Bounty",
-    onClick: () => {
-      query.max("bounty").done((result) => {
-        console.log(`Max Bounty: ${result}`);
-      });
-    },
-  });
-
-  $("#min").dxButton({
-    text: "Min Age",
-    onClick: () => {
-      query.min("age").done((result) => {
-        console.log(`Min Age: ${result}`);
-      });
-    },
-  });
-
-  $("#sum").dxButton({
-    text: "Total Bounty",
-    onClick: () => {
-      query.sum("bounty").done((result) => {
-        console.log(`Total Bounty: ${result}`);
-      });
-    },
-  });
-
-  var step = (total, item) => {
-    return total + item.bounty;
-  };
-
-  var finalize = (total) => {
-    return total;
-  };
-
-  $("#aggregate").dxButton({
-    text: "Aggregate",
-    onClick: () => {
-      query
-        .aggregate(0, step, finalize) // initial, step, finalize
-        .done((result) => {
-          console.log(result);
-        });
-    },
-  });
-
-  // $("#aggregate").dxButton({
-  //   text: "Aggregate",
-  //   onClick: () => {
-  //     query.aggregate(step).done((result) => {
-  //       console.log(result);
-  //     });
-  //   },
-  // });
-
-  $("#filter").dxButton({
-    text: "Filter",
-    onClick: () => {
-      var filteredQuery = query.filter(["bounty", ">", 1000000000]);
-      console.log(filteredQuery.toArray());
-      gridInstance.option("dataSource", filteredQuery.toArray());
-    },
-  });
-
-  $("#filter2").dxButton({
-    text: "Filter 2",
-    onClick: () => {
-      var filteredQuery = query.filter((item) => {
-        return item.bounty > 10000000 && item.age < 21;
-      });
-      console.log(filteredQuery.toArray());
-      gridInstance.option("dataSource", filteredQuery.toArray());
-    },
-  });
-
-  $("#select").dxButton({
-    text: "Select",
-    onClick: () => {
-      var selectedQuery = query.select("name", "bounty");
-      console.log(selectedQuery.toArray());
-      gridInstance.option("dataSource", selectedQuery.toArray());
-    },
-  });
-
-  $("#slice").dxButton({
-    text: "Slice",
-    onClick: () => {
-      var slicedQuery = query.slice(5, 3); // skip, take
-      console.log(slicedQuery.toArray());
-      gridInstance.option("dataSource", slicedQuery.toArray());
-    },
-  });
-
-  $("#sort").dxButton({
-    text: "Sort",
-    onClick: () => {
-      var sortedQuery = query.sortBy("bounty", true); // column, desc
-      console.log(sortedQuery.toArray());
-      gridInstance.option("dataSource", sortedQuery.toArray());
-    },
-  });
-
-  $("#thenBy").dxButton({
-    text: "Then By",
-    onClick: () => {
-      var thenByQuery = query.sortBy("age").thenBy("bounty", true);
-      console.log(thenByQuery.toArray());
-      gridInstance.option("dataSource", thenByQuery.toArray());
-    },
-  });
-
-  var gridInstance = $("#gridContainer")
+  var grid2Instance = $("#gridContainer2")
     .dxDataGrid({
-      dataSource: query.toArray(),
+      dataSource: customStore,
+      showBorders: true,
+      columns: [
+        {
+          dataField: "id",
+          dataType: "number",
+          width: 50,
+          caption: "ID",
+        },
+        {
+          dataField: "name",
+          dataType: "string",
+          caption: "Name",
+        },
+        {
+          dataField: "anime",
+          dataType: "string",
+          caption: "Anime",
+        },
+        {
+          dataField: "genre",
+          dataType: "string",
+          caption: "Genre",
+        },
+      ],
+      paging: {
+        pageSize: 5,
+      },
+      editing: {
+        allowAdding: true,
+        allowUpdating: true,
+      },
     })
     .dxDataGrid("instance");
 });

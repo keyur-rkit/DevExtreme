@@ -6,7 +6,7 @@
     loadMode: "raw", // Loads the raw data
     // cacheRawData: true, // Caches the raw data
     //// useDefaultSearch: true, // Enables the default search
-    load: ({ skip = 5 }) => {
+    load: () => {
       return $.getJSON(dummyUrl);
     },
 
@@ -74,9 +74,9 @@
     //   {
     //     selector: "id",
     //     summaryType: "count",
-    //     displayFormat: "Total: {0}",
     //   },
     // ], // Summary of the group
+    // requiredGroupCount: true,
     // skip: 1,
     // take: 5,
     // sort: [{ selector: "name", desc: false }],
@@ -85,7 +85,6 @@
     //   {
     //     selector: "id",
     //     summaryType: "count",
-    //     displayFormat: "Total Count: {0}",
     //   },
     // ],
   };
