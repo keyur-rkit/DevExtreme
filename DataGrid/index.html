@@ -61,7 +61,12 @@
       <div id="dataBindingLink"></div>
       <div id="recordPagingLink"></div>
       <div id="virtualInfiniteScrollingLink"></div>
-      <div id="editingLink"></div>
+      <div id="rowCellEditingLink"></div>
+      <div id="batchFormPopupEditingLink"></div>
+      <div id="validationLookupLink"></div>
+      <div id="recordGroupingLink"></div>
+      <div id="filteringLink"></div>
+      <div id="sortingLink"></div>
     </div>
   </div>
 
@@ -88,10 +93,45 @@
         },
       });
 
-      $("#editingLink").dxButton({
-        text: "Editing",
+      $("#rowCellEditingLink").dxButton({
+        text: "RowCellEditing",
         onClick: function () {
-          window.location.href = "./Editing/Editing.html";
+          window.location.href = "./Editing/RowCellEditing.html";
+        },
+      });
+
+      $("#batchFormPopupEditingLink").dxButton({
+        text: "BatchFormPopupEditing",
+        onClick: function () {
+          window.location.href = "./Editing/BatchFormPopup.html";
+        },
+      });
+
+      $("#validationLookupLink").dxButton({
+        text: "ValidationLookUp",
+        onClick: function () {
+          window.location.href = "./Editing/ValidationLookup.html";
+        },
+      });
+
+      $("#recordGroupingLink").dxButton({
+        text: "RecordGrouping",
+        onClick: function () {
+          window.location.href = "./Grouping/RecordGrouping.html";
+        },
+      });
+
+      $("#filteringLink").dxButton({
+        text: "Filtering",
+        onClick: function () {
+          window.location.href = "./Filtering/Filtering.html";
+        },
+      });
+
+      $("#sortingLink").dxButton({
+        text: "Sorting",
+        onClick: function () {
+          window.location.href = "./Sorting/Sorting.html";
         },
       });
 

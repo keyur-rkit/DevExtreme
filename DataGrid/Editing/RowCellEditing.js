@@ -40,8 +40,9 @@ $(document).ready(() => {
       text: "Delete Selected",
       icon: "trash",
       disabled: true,
-      onClick: async () => {
-        await gridInstance.getSelectedRowKeys().forEach((key) => {
+      onClick: () => {
+        // delete all selected
+        gridInstance.getSelectedRowKeys().forEach((key) => {
           customStore.remove(key);
         });
         // gridInstance.refresh().done(() => {
@@ -88,8 +89,8 @@ $(document).ready(() => {
         allowUpdating: true,
         allowDeleting: true,
         allowAdding: true,
-        useIcons: true,
-        selectTextOnEditStart: true,
+        useIcons: true, // to use icons insted of text
+        selectTextOnEditStart: true, // to select all text in cell when start editing
       },
       selection: {
         mode: "multiple",
@@ -133,14 +134,11 @@ $(document).ready(() => {
         console.log("EditCanceled");
       },
 
+      // for deleteAll button
       onSelectionChanged: (data) => {
         // console.log(data);
 
         deleteAllBtnInstance.option("disabled", !data.selectedRowsData.length);
-      },
-
-      onOptionChanged: (data) => {
-        console.log(data);
       },
     })
     .dxDataGrid("instance");
