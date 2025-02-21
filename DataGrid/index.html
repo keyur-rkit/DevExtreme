@@ -67,6 +67,8 @@
       <div id="recordGroupingLink"></div>
       <div id="filteringLink"></div>
       <div id="sortingLink"></div>
+      <div id="selectionLink"></div>
+      <div id="columnsCustomizationLink"></div>
     </div>
   </div>
 
@@ -132,6 +134,20 @@
         text: "Sorting",
         onClick: function () {
           window.location.href = "./Sorting/Sorting.html";
+        },
+      });
+
+      $("#selectionLink").dxButton({
+        text: "Selection",
+        onClick: function () {
+          window.location.href = "./Selection/Selection.html";
+        },
+      });
+
+      $("#columnsCustomizationLink").dxButton({
+        text: "Columns Customization",
+        onClick: function () {
+          window.location.href = "./Columns/Customization.html";
         },
       });
 
