@@ -69,6 +69,8 @@
       <div id="sortingLink"></div>
       <div id="selectionLink"></div>
       <div id="columnsCustomizationLink"></div>
+      <div id="statePersistenceLink"></div>
+      <div id="appearanceLink"></div>
     </div>
   </div>
 
@@ -148,6 +150,20 @@
         text: "Columns Customization",
         onClick: function () {
           window.location.href = "./Columns/Customization.html";
+        },
+      });
+
+      $("#statePersistenceLink").dxButton({
+        text: "State Persistence",
+        onClick: function () {
+          window.location.href = "./StatePersistence/StatePersistence.html";
+        },
+      });
+
+      $("#appearanceLink").dxButton({
+        text: "Appearance",
+        onClick: function () {
+          window.location.href = "./Appearance/Appearance.html";
         },
       });
 

@@ -124,7 +124,7 @@ $(document).ready(() => {
             text: "Batch",
             onClick: function () {
               gridInstance.option("editing.mode", "batch");
-              DevExpress.ui.notify("Changed to Batc mode", "success", 500);
+              DevExpress.ui.notify("Changed to Batch mode", "success", 500);
             },
           },
           location: "after",

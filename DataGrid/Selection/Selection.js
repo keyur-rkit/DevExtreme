@@ -110,7 +110,7 @@ $(document).ready(() => {
         mode: "multiple", // single | multiple | none (default)
         allowSelectAll: true, // can/can't select all
         selectAllMode: "page", // page | allPages (default)
-        showCheckBoxesMode: "always", // always | none | onClick (default) | ?DOUBT onLongTap
+        showCheckBoxesMode: "onLongTap", // always | none | onClick (default) | onLongTap
       },
 
       onSelectionChanged: (e) => {
