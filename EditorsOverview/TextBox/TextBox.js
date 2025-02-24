@@ -37,7 +37,7 @@ $(document).ready(function () {
             M: char => char >= 0 && char <= 5,
             m: char => char >= 0 && char <= 9
         },
-        maskInvalidMessage: 'Enter time between 5 to 7',
+        maskInvalidMessage: 'Enter time between 5 to 7:59',
         width: 200,
     });
 
