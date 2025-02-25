@@ -71,6 +71,9 @@
       <div id="columnsCustomizationLink"></div>
       <div id="statePersistenceLink"></div>
       <div id="appearanceLink"></div>
+      <div id="columnTemplateLink"></div>
+      <div id="rowTemplateLink"></div>
+      <div id="cellCustomizationLink"></div>
     </div>
   </div>
 
@@ -147,14 +150,14 @@
       });
 
       $("#columnsCustomizationLink").dxButton({
-        text: "Columns Customization",
+        text: "ColumnsCustomization",
         onClick: function () {
           window.location.href = "./Columns/Customization.html";
         },
       });
 
       $("#statePersistenceLink").dxButton({
-        text: "State Persistence",
+        text: "StatePersistence",
         onClick: function () {
           window.location.href = "./StatePersistence/StatePersistence.html";
         },
@@ -164,6 +167,27 @@
         text: "Appearance",
         onClick: function () {
           window.location.href = "./Appearance/Appearance.html";
+        },
+      });
+
+      $("#columnTemplateLink").dxButton({
+        text: "ColumnTemplate",
+        onClick: function () {
+          window.location.href = "./Template/ColumnTemplate.html";
+        },
+      });
+
+      $("#rowTemplateLink").dxButton({
+        text: "RowTemplate",
+        onClick: function () {
+          window.location.href = "./Template/RowTemplate.html";
+        },
+      });
+
+      $("#cellCustomizationLink").dxButton({
+        text: "CellCustomization",
+        onClick: function () {
+          window.location.href = "./Template/CellCustomization.html";
         },
       });
 

@@ -79,6 +79,7 @@ $(document).ready(() => {
         width: 100,
         alignment: "center", // undefined (default) | center | left | right
         allowEditing: true, // By default, inherits the value of the "editing"
+        allowExporting: true, // Applies only if the column is visible and export.enabled is true
         allowFiltering: false,
         allowFixing: true, // Applies only if columnFixing.enabled is true
         allowGrouping: false, //  Applies only when grouping is enabled
@@ -111,7 +112,6 @@ $(document).ready(() => {
         // encodeHtml,
         // editorOptions: {},
         // editCellTemplate,
-        // allowExporting,
         // cellTemplate,
       },
       {
@@ -196,6 +196,9 @@ $(document).ready(() => {
     showBorders: true,
     paging: {
       pageSize: 6,
+    },
+    export: {
+      enabled: true,
     },
   });
 
