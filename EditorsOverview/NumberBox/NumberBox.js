@@ -40,7 +40,7 @@
   });
 
   // Phone number box with custom validation
-  $("#numberBox2").dxTextBox({
+  $("#numberBox2").dxNumberBox({
     mode: "tel", // Effect keyboard of mobile device
     value: "",
     placeholder: "9876543210",

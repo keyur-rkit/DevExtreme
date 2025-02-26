@@ -27,6 +27,8 @@
   $("#multiValuebox").dxDropDownBox({
     items: ["Keyur", "Hit", "Drashti", "Meet", "Vivek"],
     contentTemplate: function (e) {
+      console.log(e);
+
       const $list = $("<div>").dxList({
         dataSource: e.component.option("items"),
         selectionMode: "multiple",

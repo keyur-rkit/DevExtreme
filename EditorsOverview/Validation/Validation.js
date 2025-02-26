@@ -112,4 +112,7 @@ $(document).ready(function () {
         }, 'success', 2000);
     });
 
+    //   $("#summary").dxValidationSummary({});
+
+
 });

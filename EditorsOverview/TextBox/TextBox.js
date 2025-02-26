@@ -14,6 +14,7 @@ $(document).ready(function () {
     });
 
     var textBox2Instance = $("#textBox2").dxTextBox({
+        // The "mode" attribute value of the actual HTML input element representing the text box.
         mode: 'password', // 'email' | 'password' | 'search' | 'tel' | 'text' | 'url'
         width: 200,
         value: 'secret',

@@ -21,13 +21,14 @@ $(document).ready(function () {
     });
 
     $("#button1").dxButton({
-        stylingMode: 'contained',
-        text: 'Validate',
-        type: 'normal',
-        icon: 'preferences',
+      stylingMode: "contained",
+      text: "Validate",
+      type: "normal", // 'back' | 'danger' | 'default' | 'normal' | 'success'
+      icon: "preferences",
         onClick: () => {
-            DevExpress.validationEngine.validateGroup("dummyGroup");
+          DevExpress.validationEngine.validateGroup("dummyGroup");
         },
+      // useSubmitBehavior: true, // Specifies whether the button submits an HTML form.
     });
 
     $("#button2").dxButton({

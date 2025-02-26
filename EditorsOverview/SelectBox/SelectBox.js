@@ -221,4 +221,25 @@
       selectBox2Instance.option("searchExpr", e.value);
     },
   });
+
+  const animeDataSource = new DevExpress.data.DataSource({
+    store: {
+      data: animeData,
+      type: "array",
+      key: "id",
+    },
+  });
+
+  $("#selectBox4").dxSelectBox({
+    dataSource: animeDataSource,
+    displayExpr: "name",
+    valueExpr: "id",
+    acceptCustomValue: true,
+    onCustomItemCreating: (e) => {
+      console.log(e);
+      if (!e.customItem) {
+        e.customItem = e.text;
+      }
+    },
+  });
 });
