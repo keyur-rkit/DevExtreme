@@ -66,6 +66,7 @@
       <div id="validationLookupLink"></div>
       <div id="recordGroupingLink"></div>
       <div id="filteringLink"></div>
+      <div id="headerFilterLink"></div>
       <div id="sortingLink"></div>
       <div id="selectionLink"></div>
       <div id="columnsCustomizationLink"></div>
@@ -76,6 +77,10 @@
       <div id="cellCustomizationLink"></div>
       <div id="toolbarLink"></div>
       <div id="groupSummariesLink"></div>
+      <div id="customSummariesLink"></div>
+      <div id="masterDetailLink"></div>
+      <div id="exportLink"></div>
+      <div id="adaptabilityLink"></div>
     </div>
   </div>
 
@@ -134,6 +139,13 @@
         text: "Filtering",
         onClick: function () {
           window.location.href = "./Filtering/Filtering.html";
+        },
+      });
+
+      $("#headerFilterLink").dxButton({
+        text: "HeaderFilter",
+        onClick: function () {
+          window.location.href = "./Filtering/HeaderFilter.html";
         },
       });
 
@@ -206,6 +218,35 @@
           window.location.href = "./DataSummaries/GroupSummaries.html";
         },
       });
+
+      $("#customSummariesLink").dxButton({
+        text: "CustomSummaries",
+        onClick: function () {
+          window.location.href = "./DataSummaries/CustomSummaries.html";
+        },
+      });
+
+      $("#masterDetailLink").dxButton({
+        text: "MasterDetail",
+        onClick: function () {
+          window.location.href = "./MasterDetail/MasterDetail.html";
+        },
+      });
+
+      $("#exportLink").dxButton({
+        text: "Export",
+        onClick: function () {
+          window.location.href = "./Export/Export.html";
+        },
+      });
+
+      $("#adaptabilityLink").dxButton({
+        text: "Adaptability",
+        onClick: function () {
+          window.location.href = "./Adaptability/Adaptability.html";
+        },
+      });
+
 
     });
   </script>

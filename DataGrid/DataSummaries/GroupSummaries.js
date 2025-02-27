@@ -32,7 +32,7 @@ $(document).ready(() => {
           column: "age",
           summaryType: "min",
           showInGroupFooter: true,
-          // showInColumn: "bounty" ,
+          // showInColumn: "bounty" , // summary goes to this column
 
           // {0} - formatted summary value.
           // {1} - the parent column's caption. Available if the showInColumn property is specified.
@@ -41,10 +41,19 @@ $(document).ready(() => {
           // alignByColumn: true,
         },
         {
+          name: "countSummary",
           column: "id",
           summaryType: "count",
         },
       ],
     },
+    // for sorting group by summary
+    sortByGroupSummaryInfo: [
+      {
+        groupColumn: "powerType", // column that must be used in grouping
+        sortOrder: "asc", //  undefined | 'asc' | 'desc'
+        summaryItem: "countSummary", //  whose values must be used to sort groups. , name from summary
+      },
+    ],
   });
 });

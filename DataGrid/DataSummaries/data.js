@@ -359,13 +359,4 @@ var onePieceData = [
     bounty: 0,
     age: 22,
   },
-  {
-    id: 41,
-    name: "Yamato",
-    power: "Oni",
-    powerType: "Race",
-    firstAppearance: "Chapter 971",
-    bounty: 0,
-    age: 28,
-  },
 ];

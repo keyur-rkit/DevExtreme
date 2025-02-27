@@ -222,22 +222,27 @@
     },
   });
 
-  const animeDataSource = new DevExpress.data.DataSource({
+  var dummyData = ["Keyur", "Mann", "Hit", "Drashti", "Meet"];
+
+  const dummyDataSource = new DevExpress.data.DataSource({
     store: {
-      data: animeData,
+      data: dummyData,
       type: "array",
-      key: "id",
     },
   });
 
+  // accepting custom value and adding into store
   $("#selectBox4").dxSelectBox({
-    dataSource: animeDataSource,
-    displayExpr: "name",
-    valueExpr: "id",
+    dataSource: dummyDataSource,
     acceptCustomValue: true,
+    useItemTextAsTitle: true, // text passed to the title attribute of the respective item.
     onCustomItemCreating: (e) => {
       console.log(e);
       if (!e.customItem) {
+        dummyDataSource
+          .store()
+          .insert(e.text)
+          .then(() => dummyDataSource.load());
         e.customItem = e.text;
       }
     },
