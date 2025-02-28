@@ -16,7 +16,7 @@
     tabIndex: 2, // number of element when Tab key is used for navigating
     text: "Age>18?",
     visible: true,
-    rtlEnabled: true, // right to left
+    // rtlEnabled: true, // right to left
   });
 
   $("#checkBox2").dxCheckBox({

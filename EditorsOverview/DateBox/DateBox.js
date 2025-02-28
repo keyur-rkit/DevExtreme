@@ -49,7 +49,7 @@
     type: "datetime",
     applyButtonText: "👍",
     cancelButtonText: "❌",
-    displayFormat: "EEEE, d of MMM, yyyy HH:mm",
+    displayFormat: "EEEE, d of MMM, yyyy HH:mm", // Tuesday, 11 of Feb, 2025 15:00
     invalidDateMessage: "Date or time is invalid",
     maxLength: 6,
     opened: true,

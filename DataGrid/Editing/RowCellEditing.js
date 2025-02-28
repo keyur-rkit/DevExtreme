@@ -20,6 +20,9 @@ $(document).ready(() => {
     },
 
     update: (key, values) => {
+      console.log(key);
+      console.log(values);
+
       return $.ajax({
         url: dummyUrl + "/" + encodeURIComponent(key),
         method: "PUT",

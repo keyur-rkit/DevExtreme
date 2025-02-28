@@ -30,6 +30,9 @@
       console.log(e);
 
       const $list = $("<div>").dxList({
+        elementAttr: {
+          id: "listForMultiple",
+        },
         dataSource: e.component.option("items"),
         selectionMode: "multiple",
         onSelectionChanged: (selectionEvent) => {
@@ -50,11 +53,7 @@
           text: "❌",
           onClick: function () {
             // Clear the selected items in the list when the clear button is clicked
-            const listInstance = $("#multiValuebox")
-              .dxDropDownBox("instance")
-              .content()
-              .find(".dx-list")
-              .dxList("instance");
+            const listInstance = $("#listForMultiple").dxList("instance");
             listInstance.option("selectedItems", []); // Unselect all items
             // Optionally, clear the value of the dropdown box as well
             $("#multiValuebox").dxDropDownBox("instance").option("value", null);

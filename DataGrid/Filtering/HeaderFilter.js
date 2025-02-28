@@ -35,6 +35,8 @@ $(document).ready(() => {
       searchTimeout: 100, //  when the search is executed.
 
       height: 300, // 325, 315 (Material)
+
+      // calculateSearchEx
     },
   });
 });

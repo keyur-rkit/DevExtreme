@@ -30,16 +30,31 @@ $(document).ready(() => {
     // Custom summary
     summary: {
       totalItems: [
+        // total summary (grid summary)
+        {
+          column: "id",
+          summaryType: "count",
+          alignment: "center", //  'center' | 'left' | 'right'
+          cssClass: "colorClass", // custom css calss
+        },
+        {
+          column: "bounty",
+          summaryType: "sum",
+          alignment: "right", //  'center' | 'left' | 'right'
+          valueFormat: "currency",
+          skipEmptyValues: true,
+        },
+        // custom summary
         {
           showInColumn: "bounty",
           summaryType: "custom", // 'avg' | 'count' | 'custom' | 'max' | 'min' | 'sum'
           name: "TotalBounty", // to use in calculateCustomSummary
           valueFormat: "currency",
-          alignment: "left", //  'center' | 'left' | 'right'
+          alignment: "right", //  'center' | 'left' | 'right'
 
           // {0} - formatted summary value.
           // {1} - the parent column's caption. Available if the showInColumn property is specified.
-          displayFormat: "Total Bounty : {0}",
+          displayFormat: "Sel Total : {0}",
         },
       ],
       calculateCustomSummary: (options) => {
