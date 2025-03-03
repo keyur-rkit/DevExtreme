@@ -151,11 +151,12 @@
           console.log(selectedItem);
           return $("<div>").dxTextBox({
             value: "Favorite anime: " + selectedItem.name,
-            readOnly: true,
+            readOnly: true, // for not allowing custom value
           });
         } else {
           return $("<div>").dxTextBox({
-            value: "Select Favorite Anime...",
+            placeholder: "Select Favorite Anime...",
+            readOnly: true,
           });
         }
       },

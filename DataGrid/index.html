@@ -1,255 +1,264 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DataGrid</title>
+    <!-- Jquery -->
+    <!-- <script type="text/javascript" src="./Scripts/jquery-3.5.1.min.js"></script> -->
+    <!-- DevExtreme theme -->
+    <!-- <link rel="stylesheet" href="./Content/dx.dark.css"> -->
+    <!-- DevExtreme library -->
+    <!-- <script type="text/javascript" src="./Scripts/dx.all.js"></script> -->
+    <!-- Jquery -->
+    <script
+      type="text/javascript"
+      src="/DataGrid/Scripts/jquery-3.5.1.min.js"
+    ></script>
 
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DataGrid</title>
-  <!-- Jquery -->
-  <!-- <script type="text/javascript" src="./Scripts/jquery-3.5.1.min.js"></script> -->
-  <!-- DevExtreme theme -->
-  <!-- <link rel="stylesheet" href="./Content/dx.dark.css"> -->
-  <!-- DevExtreme library -->
-  <!-- <script type="text/javascript" src="./Scripts/dx.all.js"></script> -->
-  <!-- Jquery -->
-  <script type="text/javascript" src="/DataGrid/Scripts/jquery-3.5.1.min.js"></script>
+    <!-- DevExtreme theme -->
+    <link rel="stylesheet" href="/DataGrid/Content/dx.dark.css" />
 
-  <!-- DevExtreme theme -->
-  <link rel="stylesheet" href="/DataGrid/Content/dx.dark.css" />
+    <!-- DevExtreme library -->
+    <script type="text/javascript" src="/DataGrid/Scripts/dx.all.js"></script>
 
-  <!-- DevExtreme library -->
-  <script type="text/javascript" src="/DataGrid/Scripts/dx.all.js"></script>
+    <style>
+      /* Centering content*/
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #2a2a2a;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
 
-  <style>
-    /* Centering content*/
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #2a2a2a;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
+      .container {
+        text-align: center;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+      }
 
-    .container {
-      text-align: center;
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 8px;
-    }
+      .innerContainer {
+        width: 600px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
 
-    .innerContainer {
-      width: 600px;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
+      .innerContainer > div {
+        margin: 5px;
+        font-size: larger;
+      }
+    </style>
+  </head>
 
-    .innerContainer>div {
-      margin: 5px;
-      font-size: larger;
-    }
-  </style>
-</head>
+  <body>
+    <div class="container">
+      <h1>DataGrid</h1>
 
-<body>
-  <div class="container">
-    <h1>DataGrid</h1>
+      <div class="innerContainer">
+        <div id="dataBindingLink"></div>
+        <div id="recordPagingLink"></div>
+        <div id="virtualInfiniteScrollingLink"></div>
+        <div id="rowCellEditingLink"></div>
+        <div id="batchFormPopupEditingLink"></div>
+        <div id="validationLookupLink"></div>
+        <div id="recordGroupingLink"></div>
+        <div id="filteringLink"></div>
+        <div id="headerFilterLink"></div>
+        <div id="sortingLink"></div>
+        <div id="selectionLink"></div>
+        <div id="columnsCustomizationLink"></div>
+        <div id="statePersistenceLink"></div>
+        <div id="appearanceLink"></div>
+        <div id="columnTemplateLink"></div>
+        <div id="rowTemplateLink"></div>
+        <div id="cellCustomizationLink"></div>
+        <div id="toolbarLink"></div>
+        <div id="groupSummariesLink"></div>
+        <div id="customSummariesLink"></div>
+        <div id="masterDetailLink"></div>
+        <div id="exportLink"></div>
+        <div id="adaptabilityLink"></div>
 
-    <div class="innerContainer">
-      <div id="dataBindingLink"></div>
-      <div id="recordPagingLink"></div>
-      <div id="virtualInfiniteScrollingLink"></div>
-      <div id="rowCellEditingLink"></div>
-      <div id="batchFormPopupEditingLink"></div>
-      <div id="validationLookupLink"></div>
-      <div id="recordGroupingLink"></div>
-      <div id="filteringLink"></div>
-      <div id="headerFilterLink"></div>
-      <div id="sortingLink"></div>
-      <div id="selectionLink"></div>
-      <div id="columnsCustomizationLink"></div>
-      <div id="statePersistenceLink"></div>
-      <div id="appearanceLink"></div>
-      <div id="columnTemplateLink"></div>
-      <div id="rowTemplateLink"></div>
-      <div id="cellCustomizationLink"></div>
-      <div id="toolbarLink"></div>
-      <div id="groupSummariesLink"></div>
-      <div id="customSummariesLink"></div>
-      <div id="masterDetailLink"></div>
-      <div id="exportLink"></div>
-      <div id="adaptabilityLink"></div>
+        <div id="gridDemoLink"></div>
+      </div>
     </div>
-  </div>
 
-  <script>
-    $(function () {
-      $("#dataBindingLink").dxButton({
-        text: "DataBinding",
-        onClick: function () {
-          window.location.href = "./DataBinding/DataBinding.html";
-        },
+    <script>
+      $(function () {
+        $("#dataBindingLink").dxButton({
+          text: "DataBinding",
+          onClick: function () {
+            window.location.href = "./DataBinding/DataBinding.html";
+          },
+        });
+
+        $("#recordPagingLink").dxButton({
+          text: "RecordPaging",
+          onClick: function () {
+            window.location.href = "./PagingAndScrolling/RecordPaging.html";
+          },
+        });
+
+        $("#virtualInfiniteScrollingLink").dxButton({
+          text: "VirtualInfiniteScrolling",
+          onClick: function () {
+            window.location.href =
+              "./PagingAndScrolling/VirtualInfiniteScrolling.html";
+          },
+        });
+
+        $("#rowCellEditingLink").dxButton({
+          text: "RowCellEditing",
+          onClick: function () {
+            window.location.href = "./Editing/RowCellEditing.html";
+          },
+        });
+
+        $("#batchFormPopupEditingLink").dxButton({
+          text: "BatchFormPopupEditing",
+          onClick: function () {
+            window.location.href = "./Editing/BatchFormPopup.html";
+          },
+        });
+
+        $("#validationLookupLink").dxButton({
+          text: "ValidationLookUp",
+          onClick: function () {
+            window.location.href = "./Editing/ValidationLookup.html";
+          },
+        });
+
+        $("#recordGroupingLink").dxButton({
+          text: "RecordGrouping",
+          onClick: function () {
+            window.location.href = "./Grouping/RecordGrouping.html";
+          },
+        });
+
+        $("#filteringLink").dxButton({
+          text: "Filtering",
+          onClick: function () {
+            window.location.href = "./Filtering/Filtering.html";
+          },
+        });
+
+        $("#headerFilterLink").dxButton({
+          text: "HeaderFilter",
+          onClick: function () {
+            window.location.href = "./Filtering/HeaderFilter.html";
+          },
+        });
+
+        $("#sortingLink").dxButton({
+          text: "Sorting",
+          onClick: function () {
+            window.location.href = "./Sorting/Sorting.html";
+          },
+        });
+
+        $("#selectionLink").dxButton({
+          text: "Selection",
+          onClick: function () {
+            window.location.href = "./Selection/Selection.html";
+          },
+        });
+
+        $("#columnsCustomizationLink").dxButton({
+          text: "ColumnsCustomization",
+          onClick: function () {
+            window.location.href = "./Columns/Customization.html";
+          },
+        });
+
+        $("#statePersistenceLink").dxButton({
+          text: "StatePersistence",
+          onClick: function () {
+            window.location.href = "./StatePersistence/StatePersistence.html";
+          },
+        });
+
+        $("#appearanceLink").dxButton({
+          text: "Appearance",
+          onClick: function () {
+            window.location.href = "./Appearance/Appearance.html";
+          },
+        });
+
+        $("#columnTemplateLink").dxButton({
+          text: "ColumnTemplate",
+          onClick: function () {
+            window.location.href = "./Template/ColumnTemplate.html";
+          },
+        });
+
+        $("#rowTemplateLink").dxButton({
+          text: "RowTemplate",
+          onClick: function () {
+            window.location.href = "./Template/RowTemplate.html";
+          },
+        });
+
+        $("#cellCustomizationLink").dxButton({
+          text: "CellCustomization",
+          onClick: function () {
+            window.location.href = "./Template/CellCustomization.html";
+          },
+        });
+
+        $("#toolbarLink").dxButton({
+          text: "Toolbar",
+          onClick: function () {
+            window.location.href = "./Template/Toolbar.html";
+          },
+        });
+
+        $("#groupSummariesLink").dxButton({
+          text: "GroupSummaries",
+          onClick: function () {
+            window.location.href = "./DataSummaries/GroupSummaries.html";
+          },
+        });
+
+        $("#customSummariesLink").dxButton({
+          text: "CustomSummaries",
+          onClick: function () {
+            window.location.href = "./DataSummaries/CustomSummaries.html";
+          },
+        });
+
+        $("#masterDetailLink").dxButton({
+          text: "MasterDetail",
+          onClick: function () {
+            window.location.href = "./MasterDetail/MasterDetail.html";
+          },
+        });
+
+        $("#exportLink").dxButton({
+          text: "Export",
+          onClick: function () {
+            window.location.href = "./Export/Export.html";
+          },
+        });
+
+        $("#adaptabilityLink").dxButton({
+          text: "Adaptability",
+          onClick: function () {
+            window.location.href = "./Adaptability/Adaptability.html";
+          },
+        });
+
+        $("#gridDemoLink").dxButton({
+          text: "Demo",
+          onClick: function () {
+            window.location.href = "./GridDemo/Home.html";
+          },
+        });
       });
-
-      $("#recordPagingLink").dxButton({
-        text: "RecordPaging",
-        onClick: function () {
-          window.location.href = "./PagingAndScrolling/RecordPaging.html";
-        },
-      });
-
-      $("#virtualInfiniteScrollingLink").dxButton({
-        text: "VirtualInfiniteScrolling",
-        onClick: function () {
-          window.location.href = "./PagingAndScrolling/VirtualInfiniteScrolling.html";
-        },
-      });
-
-      $("#rowCellEditingLink").dxButton({
-        text: "RowCellEditing",
-        onClick: function () {
-          window.location.href = "./Editing/RowCellEditing.html";
-        },
-      });
-
-      $("#batchFormPopupEditingLink").dxButton({
-        text: "BatchFormPopupEditing",
-        onClick: function () {
-          window.location.href = "./Editing/BatchFormPopup.html";
-        },
-      });
-
-      $("#validationLookupLink").dxButton({
-        text: "ValidationLookUp",
-        onClick: function () {
-          window.location.href = "./Editing/ValidationLookup.html";
-        },
-      });
-
-      $("#recordGroupingLink").dxButton({
-        text: "RecordGrouping",
-        onClick: function () {
-          window.location.href = "./Grouping/RecordGrouping.html";
-        },
-      });
-
-      $("#filteringLink").dxButton({
-        text: "Filtering",
-        onClick: function () {
-          window.location.href = "./Filtering/Filtering.html";
-        },
-      });
-
-      $("#headerFilterLink").dxButton({
-        text: "HeaderFilter",
-        onClick: function () {
-          window.location.href = "./Filtering/HeaderFilter.html";
-        },
-      });
-
-      $("#sortingLink").dxButton({
-        text: "Sorting",
-        onClick: function () {
-          window.location.href = "./Sorting/Sorting.html";
-        },
-      });
-
-      $("#selectionLink").dxButton({
-        text: "Selection",
-        onClick: function () {
-          window.location.href = "./Selection/Selection.html";
-        },
-      });
-
-      $("#columnsCustomizationLink").dxButton({
-        text: "ColumnsCustomization",
-        onClick: function () {
-          window.location.href = "./Columns/Customization.html";
-        },
-      });
-
-      $("#statePersistenceLink").dxButton({
-        text: "StatePersistence",
-        onClick: function () {
-          window.location.href = "./StatePersistence/StatePersistence.html";
-        },
-      });
-
-      $("#appearanceLink").dxButton({
-        text: "Appearance",
-        onClick: function () {
-          window.location.href = "./Appearance/Appearance.html";
-        },
-      });
-
-      $("#columnTemplateLink").dxButton({
-        text: "ColumnTemplate",
-        onClick: function () {
-          window.location.href = "./Template/ColumnTemplate.html";
-        },
-      });
-
-      $("#rowTemplateLink").dxButton({
-        text: "RowTemplate",
-        onClick: function () {
-          window.location.href = "./Template/RowTemplate.html";
-        },
-      });
-
-      $("#cellCustomizationLink").dxButton({
-        text: "CellCustomization",
-        onClick: function () {
-          window.location.href = "./Template/CellCustomization.html";
-        },
-      });
-
-      $("#toolbarLink").dxButton({
-        text: "Toolbar",
-        onClick: function () {
-          window.location.href = "./Template/Toolbar.html";
-        },
-      });
-
-      $("#groupSummariesLink").dxButton({
-        text: "GroupSummaries",
-        onClick: function () {
-          window.location.href = "./DataSummaries/GroupSummaries.html";
-        },
-      });
-
-      $("#customSummariesLink").dxButton({
-        text: "CustomSummaries",
-        onClick: function () {
-          window.location.href = "./DataSummaries/CustomSummaries.html";
-        },
-      });
-
-      $("#masterDetailLink").dxButton({
-        text: "MasterDetail",
-        onClick: function () {
-          window.location.href = "./MasterDetail/MasterDetail.html";
-        },
-      });
-
-      $("#exportLink").dxButton({
-        text: "Export",
-        onClick: function () {
-          window.location.href = "./Export/Export.html";
-        },
-      });
-
-      $("#adaptabilityLink").dxButton({
-        text: "Adaptability",
-        onClick: function () {
-          window.location.href = "./Adaptability/Adaptability.html";
-        },
-      });
-
-
-    });
-  </script>
-</body>
-
+    </script>
+  </body>
 </html>
