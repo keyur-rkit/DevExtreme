@@ -12,7 +12,7 @@
     ></script>
 
     <!-- DevExtreme theme -->
-    <link rel="stylesheet" href="../Content/dx.dark.css" />
+    <link rel="stylesheet" href="../Content/dx.material.blue.dark.css" />
 
     <!-- DevExtreme library -->
     <script type="text/javascript" src="../Scripts/dx.all.js"></script>
@@ -34,20 +34,20 @@
         <div class="dx-field">
           <div class="dx-field-label">Username</div>
           <div class="dx-field-value">
-            <div id="username"></div>
+            <div id="txtUsername"></div>
           </div>
         </div>
         <div class="dx-field">
           <div class="dx-field-label">Password</div>
           <div class="dx-field-value">
-            <div id="password"></div>
+            <div id="txtPassword"></div>
           </div>
         </div>
       </div>
       <div class="dx-fieldset">
         <div class="dx-field">
           <div class="dx-field-value">
-            <div id="login"></div>
+            <div id="btnLogin"></div>
           </div>
         </div>
       </div>
@@ -55,7 +55,7 @@
 
     <script>
       $(document).ready(() => {
-        $("#username")
+        $("#txtUsername")
           .dxTextBox({})
           .dxValidator({
             validationRules: [
@@ -66,7 +66,7 @@
             ],
           });
 
-        $("#password")
+        $("#txtPassword")
           .dxTextBox({
             // mode: "password",
           })
@@ -79,7 +79,7 @@
             ],
           });
 
-        $("#login").dxButton({
+        $("#btnLogin").dxButton({
           text: "Login",
           type: "success",
           useSubmitBehavior: true,
@@ -88,10 +88,10 @@
         $("#form").on("submit", (e) => {
           e.preventDefault();
 
-          var usernameInput = $("#username")
+          var usernameInput = $("#txtUsername")
             .dxTextBox("instance")
             .option("value");
-          var passwordInput = $("#password")
+          var passwordInput = $("#txtPassword")
             .dxTextBox("instance")
             .option("value");
 

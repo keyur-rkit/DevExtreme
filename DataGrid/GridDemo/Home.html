@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Demo</title>
 
+    <!-- Excel Export -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.4.0/polyfill.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.1.1/exceljs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.2/FileSaver.min.js"></script>
+
     <!-- Jquery -->
     <script
       type="text/javascript"
@@ -12,21 +17,61 @@
     ></script>
 
     <!-- DevExtreme theme -->
-    <link rel="stylesheet" href="../Content/dx.dark.css" />
+    <link rel="stylesheet" href="../Content/dx.material.blue.dark.css" />
 
     <!-- DevExtreme library -->
     <script type="text/javascript" src="../Scripts/dx.all.js"></script>
+
+    <style>
+      body {
+        margin: 20px;
+      }
+      .container {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+      }
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+
+        margin-bottom: 10px;
+      }
+      #profileImg {
+        width: 50px;
+        height: 50px;
+        background-color: snow;
+        border-radius: 50%;
+      }
+      .flex {
+        display: flex;
+      }
+      .flex > div {
+        margin-right: 5px;
+      }
+    </style>
   </head>
 
   <body class="dx-viewport">
-    <h1>Demo</h1>
-
-    <div id="userContainer"></div>
-    <br />  
-    <div id="recipeContainer"></div>
-    <br />
-    <div id="postContainer"></div>
-
+    <div class="navbar">
+      <div>
+        <div id="btnProfile"></div>
+        <div id="btnPosts"></div>
+        <div id="btnUsers"></div>
+      </div>
+      <div class="flex">
+        <div id="txtUsername"></div>
+        <div id="txtRole"></div>
+        <div id="btnLogout"></div>
+        <!-- <img id="profileImg" src="" alt=""> -->
+      </div>
+    </div>
+    <div class="container">
+      <div id="userContainer"></div>
+      <br />
+      <div id="postContainer"></div>
+    </div>
     <script src="Home.js"></script>
   </body>
 </html>
