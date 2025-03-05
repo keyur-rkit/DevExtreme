@@ -707,17 +707,22 @@ $(document).ready(() => {
       },
       onExporting(e) {
         const workbook = new ExcelJS.Workbook();
-        const worksheet = workbook.addWorksheet('Employees');
+        const worksheet = workbook.addWorksheet("Users");
 
-        DevExpress.excelExporter.exportDataGrid({
-          component: e.component,
-          worksheet,
-          autoFilterEnabled: true,
-        }).then(() => {
-          workbook.xlsx.writeBuffer().then((buffer) => {
-            saveAs(new Blob([buffer], { type: 'application/octet-stream' }), 'Employees.xlsx');
+        DevExpress.excelExporter
+          .exportDataGrid({
+            component: e.component,
+            worksheet,
+            autoFilterEnabled: true, // to get header filter in excel
+          })
+          .then(() => {
+            workbook.xlsx.writeBuffer().then((buffer) => {
+              saveAs(
+                new Blob([buffer], { type: "application/octet-stream" }),
+                "Users.xlsx"
+              );
+            });
           });
-        });
       },
     });
 
