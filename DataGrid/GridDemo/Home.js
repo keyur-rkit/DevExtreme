@@ -92,10 +92,15 @@ $(document).ready(() => {
       dataSource: new DevExpress.data.CustomStore({
         key: "id",
         loadMode: "raw",
-        load: () => {
+        load: (loadOptions) => {
+          var param = {
+            skip: loadOptions.skip || 0,
+            limit: loadOptions.take || 10,
+          };
           return $.ajax({
-            url: `https://dummyjson.com/users?limit=208`,
+            url: `https://dummyjson.com/users`,
             method: "GET",
+            data: param,
           }).then((res) => {
             return res.users;
           });
@@ -657,8 +662,17 @@ $(document).ready(() => {
       // infinite scrolling
       height: 440,
       scrolling: {
-        mode: "virtual",
-        rowRenderingMode: "virtual",
+        // mode: "virtual",
+        mode: "infinite",
+        preloadEnabled: true,
+        // rowRenderingMode: "virtual",
+      },
+      remoteOperations: {
+        paging: true,
+      },
+      paging: {
+        enabled: true,
+        pageSize: 10,
       },
 
       // grouping
@@ -678,10 +692,10 @@ $(document).ready(() => {
       },
 
       // mutliple selection
-      selection: {
-        mode: "multiple",
-        showCheckBoxesMode: "always",
-      },
+      // selection: {
+      //   mode: "multiple",
+      //   showCheckBoxesMode: "always",
+      // },
 
       // group summary
       summary: {
