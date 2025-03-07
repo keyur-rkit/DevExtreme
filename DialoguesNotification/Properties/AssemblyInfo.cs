@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Dialogues_Notification")]
+[assembly: AssemblyTitle("DialoguesNotification")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Dialogues_Notification")]
+[assembly: AssemblyProduct("DialoguesNotification")]
 [assembly: AssemblyCopyright("Copyright ©  2025")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("d9460b20-338f-4d33-858a-4f1f0889c36f")]
+[assembly: Guid("963a6baa-63e0-407a-bdee-9b0f63638106")]
 
 // Version information for an assembly consists of the following four values:
 //

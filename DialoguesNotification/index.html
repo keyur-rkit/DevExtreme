@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DialoguesNotification</title>
+    <!-- Jquery -->
+    <!-- <script type="text/javascript" src="./Scripts/jquery-3.5.1.min.js"></script> -->
+    <!-- DevExtreme theme -->
+    <!-- <link rel="stylesheet" href="./Content/dx.material.blue.dark.css"> -->
+    <!-- DevExtreme library -->
+    <!-- <script type="text/javascript" src="./Scripts/dx.all.js"></script> -->
+
+    <!-- Jquery -->
+    <script
+      type="text/javascript"
+      src="/DialoguesNotification/Scripts/jquery-3.5.1.min.js"
+    ></script>
+
+    <!-- DevExtreme theme -->
+    <link
+      rel="stylesheet"
+      href="/DialoguesNotification/Content/dx.material.blue.dark.css"
+    />
+
+    <!-- DevExtreme library -->
+    <script
+      type="text/javascript"
+      src="/DialoguesNotification/Scripts/dx.all.js"
+    ></script>
+
+    <style>
+      /* Centering content*/
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #2a2a2a;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      .container {
+        text-align: center;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+      }
+
+      .innerContainer {
+        width: 600px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .innerContainer > div {
+        margin: 5px;
+        font-size: larger;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>DialoguesNotification</h1>
+
+      <div class="innerContainer">
+        <div id="LoaderDemo"></div>
+        <div id="PopUpOverDemo"></div>
+        <div id="Demo"></div>
+      </div>
+    </div>
+
+    <script>
+      $(function () {
+        $("#LoaderDemo").dxButton({
+          text: "Loader",
+          onClick: function () {
+            window.location.href = "./Loader/Loader.html";
+          },
+        });
+
+        $("#PopUpOverDemo").dxButton({
+          text: "PopUpOver",
+          onClick: function () {
+            window.location.href = "./PopUpOver/PopUpOver.html";
+          },
+        });
+
+        $("#Demo").dxButton({
+          text: "Demo",
+          onClick: function () {
+            window.location.href = "./Demo/Demo.html";
+          },
+        });
+      });
+    </script>
+  </body>
+</html>
