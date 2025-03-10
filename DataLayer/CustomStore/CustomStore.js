@@ -4,14 +4,12 @@
   var animeDataCustomStore = new DevExpress.data.CustomStore({
     key: "id",
     loadMode: "raw", // Loads the raw data
-    // cacheRawData: true, // Caches the raw data
-    //// useDefaultSearch: true, // Enables the default search
     load: () => {
-      return $.getJSON(dummyUrl);
+      return $.get(dummyUrl);
     },
 
     byKey: (key) => {
-      return $.getJSON(dummyUrl + "/" + encodeURIComponent(key));
+      return $.get(dummyUrl + "/" + encodeURIComponent(key));
     },
 
     insert: (values) => {
@@ -34,7 +32,7 @@
     },
 
     totalCount: () => {
-      return $.getJSON(dummyUrl).then((data) => {
+      return $.get(dummyUrl).then((data) => {
         return data.length;
       });
     },
@@ -42,6 +40,8 @@
     errorHandler: (error) => {
       console.log(error);
     },
+
+    cacheRawData: true, // Caches the raw data, only for "raw" mode
   });
 
   // animeDataCustomStore.clearRawDataCache(); // Clears the raw data cache
@@ -69,6 +69,17 @@
 
   // works with loadMode = "raw" only
   var loadOption = {
+    // skip: 1,
+    // take: 5,
+    // sort: [{ selector: "name", desc: false }],
+    // filter: ["anime", "=", "One Piece"],
+    // requiredGroupCount: true,
+    // totalSummary: [
+    //   {
+    //     selector: "id",
+    //     summaryType: "count",
+    //   },
+    // ],
     // group: ["genre"], // Group by genre
     // groupSummary: [
     //   {
@@ -76,17 +87,6 @@
     //     summaryType: "count",
     //   },
     // ], // Summary of the group
-    // requiredGroupCount: true,
-    // skip: 1,
-    // take: 5,
-    // sort: [{ selector: "name", desc: false }],
-    // filter: ["genre", "=", "Action"],
-    // totalSummary: [
-    //   {
-    //     selector: "id",
-    //     summaryType: "count",
-    //   },
-    // ],
   };
 
   $("#applyLoadOption").dxButton({
@@ -114,7 +114,6 @@
         allowDeleting: true,
         allowAdding: true,
       },
-      // filterRow: { visible: true },
     })
     .dxDataGrid("instance");
 });

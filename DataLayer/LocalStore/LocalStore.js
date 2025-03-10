@@ -64,7 +64,7 @@
 
   var animeLocalStore = new DevExpress.data.LocalStore({
     key: ["id", "name"],
-    name: "animeData",
+    name: "animeData", // in localStorage : dx-data-localStore-animeData
     immediate: false,
     flushInterval: 3000,
     data: animeData,

@@ -267,9 +267,13 @@
   $("#totalCount").dxButton({
     text: "Total Count",
     onClick: () => {
-      animeDataStore.totalCount().done((count) => {
-        console.log(`[ Total Count : ${count} ]`);
-      });
+      animeDataStore
+        .totalCount({
+          filter: ["id", ">", 5], // totalCount with filter
+        })
+        .done((count) => {
+          console.log(`[ Total Count : ${count} ]`);
+        });
     },
   });
 

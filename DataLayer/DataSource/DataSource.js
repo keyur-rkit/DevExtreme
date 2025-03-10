@@ -253,20 +253,27 @@
       },
     }),
 
-    group: "anime",
+    group: "anime", // with string
+
+    // group: { selector: "anime", desc: true }, // with object
+
     map: (item) => {
-      // `+` incresing every time the function is called
-      item.name = `+ ${item.name} +`;
-      return item;
+      var newId = `#${item.id}`;
+      var newName = `⚡ ${item.name}`;
+      return {
+        id: newId,
+        name: newName,
+        anime: item.anime,
+        genre: item.genre,
+      };
     },
     // filtering the data ( "=", "<>", ">", ">=", "<", "<=", "startswith", "endswith", "contains", "notcontains" )
     filter: ["id", ">", 10],
+
     paginate: true,
     pageSize: 10,
 
-    pushAggrefationTimeout: 1000, // Aggregates changes before pushing to DataSource.
-
-    requiredTotalCount: true, // Required to get the total count of the data.
+    requireTotalCount: false, // Require to get the total count of the data.
 
     // not working on static data
     reShapeOnPush: true, // Reshape the data after pushing.
@@ -302,43 +309,46 @@
         console.log(animeDataSource.items());
       }
     },
-    postProcess: (data) => {
-      console.log("[ Data to Post Process");
-      console.log(data);
-      console.log("]");
-      return data;
-    },
+    // postProcess: (data) => {
+    //   console.log("[ Data to Post Process");
+    //   console.log(data);
+    //   console.log("]");
+    //   return data;
+    // },
   });
 
   // to get the current filter
-  console.log(`Filter: ${animeDataSource.filter()}`);
+  // console.log(`Filter: ${animeDataSource.filter()}`);
   // to change or set the filter
   // animeDataSource.filter(["id", "<", 10]);
 
   // to get the current group
-  console.log(`Group: ${animeDataSource.group()}`);
+  // console.log(`Group: ${animeDataSource.group()}`);
   // to change or set the group
   // animeDataSource.group("genre");
 
-  console.log(`isLastPage: ${animeDataSource.isLastPage()}`);
-  console.log(`isLoading: ${animeDataSource.isLoading()}`);
-  console.log(`isLoaded: ${animeDataSource.isLoaded()}`);
+  // console.log(`isLastPage: ${animeDataSource.isLastPage()}`);
+  // console.log(`isLoading: ${animeDataSource.isLoading()}`);
+  // console.log(`isLoaded: ${animeDataSource.isLoaded()}`);
 
   // to get the current key
-  console.log(`Key: ${animeDataSource.key()}`);
+  // console.log(`Key: ${animeDataSource.key()}`);
 
-  console.log(`pageSize: ${animeDataSource.pageSize()}`);
+  // console.log(`pageSize: ${animeDataSource.pageSize()}`);
   // to change or set the pageSize
   // animeDataSource.pageSize(5);
 
-  console.log(`paginate: ${animeDataSource.paginate()}`);
+  // console.log(`paginate: ${animeDataSource.paginate()}`);
   // to change or set the paginate
   // animeDataSource.paginate(false);
 
   // Clears currently loaded DataSource items and calls the load() method.
-  animeDataSource.reload();
+  // animeDataSource.reload();
 
   // same for : requireTotalCount, searchExpr, searchOperation, searchValue, select, sort
+
+  animeDataSource.load();
+  console.log(`TotalCount: ${animeDataSource.totalCount()}`);
 
   $("#load").dxButton({
     text: "Load",
@@ -358,19 +368,6 @@
         });
     },
   });
-
-  // $("#gridContainer").dxList({
-  //   dataSource: animeDataSource,
-  //   displayExpr: "name",
-  //   itemTemplate: function (data) {
-  //     return `<div>
-  //               <div>${data.id}</div>
-  //               <div>${data.name}</div>
-  //               <div>${data.anime}</div>
-  //               <div>${data.genre}</div>
-  //             </div>`;
-  //   },
-  // });
 
   $("#gridContainer").dxDataGrid({
     dataSource: animeDataSource,
