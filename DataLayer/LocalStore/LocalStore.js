@@ -69,7 +69,7 @@
     flushInterval: 3000,
     data: animeData,
 
-    onload: () => {
+    onLoaded: () => {
       console.log("LocalStore loaded");
     },
   });

@@ -66,6 +66,7 @@
     key: "id",
     data: animeData,
 
+    // callback function to handle error
     errorHandler: (e) => {
       console.log("[ errorHandler object : ");
       console.log(e);
@@ -132,6 +133,7 @@
       console.log("[ onModified object ]");
     },
 
+    // multiple changes
     onPush: (changes) => {
       console.log("[ onPush object ");
       console.log(changes);

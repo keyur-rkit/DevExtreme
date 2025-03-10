@@ -337,6 +337,7 @@
     onClick: () => {
       query.avg("bounty").done((result) => {
         console.log(`Average Bounty: ${result}`);
+        DevExpress.ui.notify(`Average Bounty: ${result}`, "info", 2000);
       });
     },
   });
@@ -346,6 +347,7 @@
     onClick: () => {
       query.count().done((result) => {
         console.log(`Count: ${result}`);
+        DevExpress.ui.notify(`Count: ${result}`, "info", 2000);
       });
     },
   });
@@ -363,6 +365,7 @@
     onClick: () => {
       query.max("bounty").done((result) => {
         console.log(`Max Bounty: ${result}`);
+        DevExpress.ui.notify(`Max Bounty: ${result}`, "info", 2000);
       });
     },
   });
@@ -372,6 +375,7 @@
     onClick: () => {
       query.min("age").done((result) => {
         console.log(`Min Age: ${result}`);
+        DevExpress.ui.notify(`Min Age: ${result}`, "info", 2000);
       });
     },
   });
@@ -381,6 +385,7 @@
     onClick: () => {
       query.sum("bounty").done((result) => {
         console.log(`Total Bounty: ${result}`);
+        DevExpress.ui.notify(`Total Bounty: ${result}`, "info", 2000);
       });
     },
   });
@@ -400,6 +405,11 @@
         .aggregate(0, step, finalize) // initial, step, finalize
         .done((result) => {
           console.log(result);
+          DevExpress.ui.notify(
+            `Total Bounty using aggregate: ${result}`,
+            "info",
+            2000
+          );
         });
     },
   });
@@ -419,6 +429,7 @@
       var filteredQuery = query.filter(["bounty", ">", 1000000000]);
       console.log(filteredQuery.toArray());
       gridInstance.option("dataSource", filteredQuery.toArray());
+      DevExpress.ui.notify(`["bounty", ">", 1000000000]`, "info", 2000);
     },
   });
 
@@ -430,6 +441,11 @@
       });
       console.log(filteredQuery.toArray());
       gridInstance.option("dataSource", filteredQuery.toArray());
+      DevExpress.ui.notify(
+        `item.bounty > 10000000 && item.age < 21`,
+        "info",
+        2000
+      );
     },
   });
 
@@ -439,15 +455,17 @@
       var selectedQuery = query.select("name", "bounty");
       console.log(selectedQuery.toArray());
       gridInstance.option("dataSource", selectedQuery.toArray());
+      DevExpress.ui.notify(`"name", "bounty"`, "info", 2000);
     },
   });
 
   $("#slice").dxButton({
     text: "Slice",
     onClick: () => {
-      var slicedQuery = query.slice(5, 3); // skip, take
+      var slicedQuery = query.slice(5, 3); // skip, take (optional)
       console.log(slicedQuery.toArray());
       gridInstance.option("dataSource", slicedQuery.toArray());
+      DevExpress.ui.notify(`slice(5, 3)`, "info", 2000);
     },
   });
 
@@ -457,6 +475,7 @@
       var sortedQuery = query.sortBy("bounty", true); // column, desc
       console.log(sortedQuery.toArray());
       gridInstance.option("dataSource", sortedQuery.toArray());
+      DevExpress.ui.notify(`sortBy("bounty", true);`, "info", 2000);
     },
   });
 
@@ -466,6 +485,11 @@
       var thenByQuery = query.sortBy("age").thenBy("bounty", true);
       console.log(thenByQuery.toArray());
       gridInstance.option("dataSource", thenByQuery.toArray());
+      DevExpress.ui.notify(
+        `sortBy("age").thenBy("bounty", true)`,
+        "info",
+        2000
+      );
     },
   });
 

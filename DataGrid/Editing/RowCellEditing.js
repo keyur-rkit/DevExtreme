@@ -45,13 +45,20 @@ $(document).ready(() => {
       disabled: true,
       onClick: () => {
         // delete all selected
-        gridInstance.getSelectedRowKeys().forEach((key) => {
-          customStore.remove(key);
+        // console.log(gridInstance.getSelectedRowKeys());
+        const keys = gridInstance.getSelectedRowKeys();
+        let completed = 0;
+
+        keys.forEach((key) => {
+          customStore.remove(key).then(() => {
+            completed++;
+            if (completed === keys.length) {
+              gridInstance.refresh().done(() => {
+                console.log("refresh done");
+              });
+            }
+          });
         });
-        // gridInstance.refresh().done(() => {
-        //   console.log("refresh done");
-        // });
-        location.reload(); // refresh is not working
       },
     })
     .dxButton("instance");
