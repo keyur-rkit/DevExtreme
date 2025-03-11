@@ -22,7 +22,31 @@ $(document).ready(() => {
       "lastName",
       "age",
       "gender",
-      "birthDate",
+      {
+        dataField: "birthDate",
+        dataType: "date",
+        // custom headerFilter for birthDate column
+        headerFilter: {
+          dataSource: [
+            {
+              text: "BirthDate < 1/1/1990",
+              value: ["birthDate", "<", new Date(1990, 0, 1)],
+            },
+            {
+              text: "BirthDate: 1/1/1990 - 1/1/2000",
+              value: [
+                ["birthDate", ">=", new Date(1990, 0, 1)],
+                "and",
+                ["birthDate", "<=", new Date(2000, 0, 1)],
+              ],
+            },
+            {
+              text: "BirthDate > 1/1/2000",
+              value: ["birthDate", ">", new Date(2000, 0, 1)],
+            },
+          ],
+        },
+      },
       "bloodGroup",
     ],
     paging: {
@@ -33,10 +57,7 @@ $(document).ready(() => {
       visible: true,
       allowSearch: true,
       searchTimeout: 100, //  when the search is executed.
-
       height: 300, // 325, 315 (Material)
-
-      // calculateSearchEx
     },
   });
 });

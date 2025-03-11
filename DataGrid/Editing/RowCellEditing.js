@@ -86,16 +86,8 @@ $(document).ready(() => {
         },
       ],
       showBorders: true,
-      // editing: {
-      //   mode: "row", // "row"
-      //   allowUpdating: true,
-      //   allowDeleting: true,
-      //   allowAdding: true,
-      //   useIcons: true,
-      //   selectTextOnEditStart: true,
-      // },
       editing: {
-        mode: "cell", // "cell"
+        mode: "cell", // "cell" or "row "
         allowUpdating: true,
         allowDeleting: true,
         allowAdding: true,
@@ -149,6 +141,32 @@ $(document).ready(() => {
         // console.log(data);
 
         deleteAllBtnInstance.option("disabled", !data.selectedRowsData.length);
+      },
+
+      onToolbarPreparing: (e) => {
+        var toolbarItems = e.toolbarOptions.items;
+        toolbarItems.push({
+          widget: "dxButton",
+          options: {
+            text: "Row",
+            onClick: function () {
+              gridInstance.option("editing.mode", "row");
+              DevExpress.ui.notify("Changed to row mode", "success", 500);
+            },
+          },
+          location: "after",
+        });
+        toolbarItems.push({
+          widget: "dxButton",
+          options: {
+            text: "Cell",
+            onClick: function () {
+              gridInstance.option("editing.mode", "cell");
+              DevExpress.ui.notify("Changed to cell mode", "success", 500);
+            },
+          },
+          location: "after",
+        });
       },
     })
     .dxDataGrid("instance");
