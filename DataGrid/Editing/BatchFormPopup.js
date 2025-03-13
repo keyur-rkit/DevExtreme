@@ -60,12 +60,12 @@ $(document).ready(() => {
 
       showBorders: true,
       editing: {
-        mode: "batch",
+        mode: "batch", // batch , form , popup
         allowUpdating: true,
         allowDeleting: true,
         allowAdding: true,
         useIcons: true,
-        selectTextOnEditStart: true,
+        selectTextOnEditStart: true, // not for form and popup
 
         // only for form and popup modes
         form: {

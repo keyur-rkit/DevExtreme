@@ -46,6 +46,7 @@ $(document).ready(() => {
       {
         dataField: "name",
         dataType: "string",
+        filterOperations: ["contains"], //  '=' | '<>' | '<' | '<=' | '>' | '>=' | 'contains' | 'endswith' | 'isblank' | 'isnotblank' | 'notcontains' | 'startswith' | 'between' | 'anyof' | 'noneof'
       },
       {
         dataField: "anime",
