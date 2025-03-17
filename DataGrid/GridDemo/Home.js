@@ -1,28 +1,29 @@
+import { decryptData } from "./Helpers/Encryption.js";
+import { PostReq, GetReq, PutReq, DeleteReq } from "./Helpers/ApiServices.js";
+import { Toast, Redirect } from "./Helpers/Utils.js";
+
 $(document).ready(async () => {
-  // Check login state
-  var userToken = sessionStorage.getItem("userToken");
+  // checking token in sessionStorage
+  var encryptedToken = sessionStorage.getItem("userToken");
+  if (encryptedToken) {
+    // decrypting token
+    var userToken = decryptData(encryptedToken);
+  }
 
-  // fetching user data
+  // fetching user data using token
   if (userToken != null) {
-    await $.ajax({
-      url: "https://dummyjson.com/auth/me",
-      type: "GET",
-      headers: {
-        Authorization: `Bearer ${userToken}`, // Pass JWT via Authorization header
-      },
-      success: (res) => {
-        // console.log(res);
-
+    var headers = {
+      Authorization: `Bearer ${userToken}`, // Pass token via Authorization header
+    };
+    await GetReq("https://dummyjson.com/auth/me", {}, headers)
+      .then((res) => {
         window.user = res;
-        console.log(window.user);
-      },
-      error: (e) => {
-        console.log(`Error : ${e.responseJSON.message}`);
-        window.location.href = "./Login.html";
-      },
-    });
+      })
+      .fail(() => {
+        Redirect("./Login.html");
+      });
   } else {
-    window.location.href = "./Login.html";
+    Redirect("./Login.html");
   }
 
   $("#txtUsername").dxTextBox({
@@ -44,17 +45,15 @@ $(document).ready(async () => {
     type: "danger",
     onClick: () => {
       sessionStorage.removeItem("userToken");
-      location.reload(); // to frefresh page
+      Redirect("./Login.html");
     },
   });
 
   const tabPanel = $("#tabpanel")
     .dxTabPanel({
       width: "100%",
-      animationEnabled: true,
       swipeEnabled: true,
       loop: true,
-      showNavButtons: true,
 
       items: [
         {
@@ -65,31 +64,20 @@ $(document).ready(async () => {
                 key: "id",
                 loadMode: "raw",
                 load: () => {
-                  return $.ajax({
-                    url: `https://dummyjson.com/users/${window.user.id}`,
-                    method: "GET",
-                  }).then((res) => {
+                  return GetReq(
+                    `https://dummyjson.com/users/${window.user.id}`
+                  ).then((res) => {
                     return [res];
                   });
                 },
-                // update: (key, values) => {
-                //   return $.ajax({
-                //     url: `https://dummyjson.com/users/${key}`,
-                //     method: "PUT",
-                //     data: values,
-                //   }).then((res) => {
-                //     // console.log(res);
-                //     DevExpress.ui.notify(
-                //       {
-                //         message: "User updated",
-                //         position: "top center",
-                //         width: 200,
-                //       },
-                //       "success",
-                //       2000
-                //     );
-                //   });
-                // },
+                update: (key, values) => {
+                  return PutReq(
+                    `https://dummyjson.com/users/${key}`,
+                    values
+                  ).then(() => {
+                    Toast("User updated", "success");
+                  });
+                },
               }),
               columns: [
                 {
@@ -153,7 +141,6 @@ $(document).ready(async () => {
               showBorders: true,
               columnAutoWidth: true,
 
-              // form editing
               editing: {
                 mode: "form",
                 allowUpdating: true,
@@ -171,12 +158,28 @@ $(document).ready(async () => {
                 key: "id",
                 loadMode: "raw",
                 load: () => {
-                  return $.ajax({
-                    url: `https://dummyjson.com/users/${window.user.id}/posts`,
-                    method: "GET",
-                  }).then((res) => {
+                  return GetReq(
+                    `https://dummyjson.com/users/${window.user.id}/posts`
+                  ).then((res) => {
                     return res.posts;
                   });
+                },
+
+                update: (key, values) => {
+                  return PutReq(
+                    `https://dummyjson.com/posts/${key}`,
+                    values
+                  ).then(() => {
+                    Toast(`${Object.keys(values)[0]} updated`, "success");
+                  });
+                },
+
+                remove: (key) => {
+                  return DeleteReq(`https://dummyjson.com/posts/${key}`).then(
+                    () => {
+                      Toast("Post Deleted", "success");
+                    }
+                  );
                 },
               }),
 
@@ -185,6 +188,7 @@ $(document).ready(async () => {
                   dataField: "id",
                   dataType: "number",
                   caption: "ID",
+                  allowEditing: false,
                 },
                 {
                   dataField: "title",
@@ -195,7 +199,7 @@ $(document).ready(async () => {
                   dataField: "tags",
                   dataType: "string",
                   caption: "Tags",
-                  // column template
+                  // cell template to show mulitple tags in Comma-Separate
                   cellTemplate: (container, options) => {
                     container.text(options.value.join(", "));
                   },
@@ -297,7 +301,6 @@ $(document).ready(async () => {
               showBorders: true,
               columnAutoWidth: true,
 
-              // cell editing
               editing: {
                 mode: "cell",
                 allowDeleting: true,
@@ -311,7 +314,6 @@ $(document).ready(async () => {
                 // template for masteDetail
                 template: (container, options) => {
                   const data = options.data;
-                  // console.log(options);
                   var dataSource = options.component.getDataSource();
                   $("<div>")
                     .dxTextArea({
@@ -320,7 +322,6 @@ $(document).ready(async () => {
                       height: 90,
                       onValueChanged: (e) => {
                         data.body = e.value;
-                        // console.log(dataSource);
                         // to call updated function of customStore
                         dataSource._store._updateFunc(data.id, data);
                       },
@@ -362,47 +363,26 @@ $(document).ready(async () => {
                 key: "id",
                 loadMode: "raw",
                 load: () => {
-                  return $.ajax({
-                    url: `https://dummyjson.com/posts?limit=251`,
-                    method: "GET",
-                  }).then((res) => {
-                    return res.posts;
-                  });
+                  return GetReq(`https://dummyjson.com/posts?limit=251`).then(
+                    (res) => {
+                      return res.posts;
+                    }
+                  );
                 },
                 update: (key, values) => {
-                  return $.ajax({
-                    url: `https://dummyjson.com/posts/${key}`,
-                    method: "PUT",
-                    data: values,
-                  }).then((res) => {
-                    // console.log(res);
-                    DevExpress.ui.notify(
-                      {
-                        message: "Post updated",
-                        position: "top center",
-                        width: 200,
-                      },
-                      "success",
-                      2000
-                    );
+                  return PutReq(
+                    `https://dummyjson.com/posts/${key}`,
+                    values
+                  ).then(() => {
+                    Toast("Post updated", "success");
                   });
                 },
                 remove: (key) => {
-                  return $.ajax({
-                    url: `https://dummyjson.com/posts/${key}`,
-                    method: "DELETE",
-                  }).then((res) => {
-                    // console.log(res);
-                    DevExpress.ui.notify(
-                      {
-                        message: "Post Deleted",
-                        position: "top center",
-                        width: 200,
-                      },
-                      "success",
-                      2000
-                    );
-                  });
+                  return DeleteReq(`https://dummyjson.com/posts/${key}`).then(
+                    () => {
+                      Toast("Post Deleted", "success");
+                    }
+                  );
                 },
               }),
 
@@ -411,7 +391,7 @@ $(document).ready(async () => {
                   dataField: "id",
                   dataType: "number",
                   caption: "ID",
-                  validationRules: [{ type: "required" }],
+                  allowEditing: false,
                 },
                 {
                   dataField: "title",
@@ -664,67 +644,37 @@ $(document).ready(async () => {
                 key: "id",
                 loadMode: "raw",
                 load: () => {
-                  return $.ajax({
-                    url: `https://dummyjson.com/users?limit=208`,
-                    method: "GET",
-                  }).then((res) => {
-                    return res.users;
-                  });
+                  return GetReq(`https://dummyjson.com/users?limit=208`).then(
+                    (res) => {
+                      return res.users;
+                    }
+                  );
                 },
 
                 update: (key, values) => {
-                  return $.ajax({
-                    url: `https://dummyjson.com/users/${key}`,
-                    method: "PUT",
-                    data: values,
-                  }).then((res) => {
-                    DevExpress.ui.notify(
-                      {
-                        message: "User updated",
-                        position: "top center",
-                        width: 200,
-                      },
-                      "success",
-                      2000
-                    );
+                  return PutReq(
+                    `https://dummyjson.com/users/${key}`,
+                    values
+                  ).then(() => {
+                    Toast("User Updated", "success");
                   });
                 },
 
                 insert: (values) => {
-                  return $.ajax({
-                    url: `https://dummyjson.com/users/add`,
-                    method: "POST",
-                    data: values,
-                  }).then((res) => {
-                    // console.log(res);
-                    DevExpress.ui.notify(
-                      {
-                        message: "User added",
-                        position: "top center",
-                        width: 200,
-                      },
-                      "success",
-                      2000
-                    );
+                  return PostReq(
+                    `https://dummyjson.com/users/add`,
+                    values
+                  ).then(() => {
+                    Toast("User added", "success");
                   });
                 },
 
                 remove: (key) => {
-                  return $.ajax({
-                    url: `https://dummyjson.com/users/${key}`,
-                    method: "DELETE",
-                  }).then((res) => {
-                    // console.log(res);
-                    DevExpress.ui.notify(
-                      {
-                        message: "User Deleted",
-                        position: "top center",
-                        width: 200,
-                      },
-                      "success",
-                      2000
-                    );
-                  });
+                  return DeleteReq(`https://dummyjson.com/users/${key}`).then(
+                    () => {
+                      Toast("User Deleted", "success");
+                    }
+                  );
                 },
               }),
               columns: [
@@ -732,7 +682,6 @@ $(document).ready(async () => {
                   dataField: "id",
                   dataType: "number",
                   caption: "ID",
-                  validationRules: [{ type: "required" }],
                   allowEditing: false,
                   allowGrouping: false,
                 },
