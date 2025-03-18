@@ -1,4 +1,4 @@
-import { encryptData } from "./Helpers/Encryption.js";
+import { EncryptData } from "./Helpers/Encryption.js";
 import { PostReq } from "./Helpers/ApiServices.js";
 import { Toast, Redirect } from "./Helpers/Utils.js";
 
@@ -47,7 +47,7 @@ $(document).ready(() => {
 
     PostReq(url, data).then((res) => {
       // encrypting token before storing
-      var encrypted = encryptData(res.accessToken);
+      var encrypted = EncryptData(res.accessToken);
       sessionStorage.setItem("userToken", encrypted);
 
       Toast("Login successful", "success");

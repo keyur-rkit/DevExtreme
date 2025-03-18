@@ -1,13 +1,13 @@
-function encryptData(data) {
+function EncryptData(data) {
   var encrypted = CryptoJS.AES.encrypt(data, "Ruyek417714keuyR").toString();
   return encrypted;
 }
 
-function decryptData(data) {
+function DecryptData(data) {
   var decrypted = CryptoJS.AES.decrypt(data, "Ruyek417714keuyR").toString(
     CryptoJS.enc.Utf8
   );
   return decrypted;
 }
 
-export { encryptData, decryptData };
+export { EncryptData, DecryptData };
