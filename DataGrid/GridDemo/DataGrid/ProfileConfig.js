@@ -1,11 +1,13 @@
 import { GetReq, PutReq } from "../Helpers/ApiServices.js";
 import { Toast } from "../Helpers/Utils.js";
 
+// Configuration for the Profile data grid
 var ProfileConfig = {
   dataSource: new DevExpress.data.CustomStore({
     key: "id",
     loadMode: "raw",
     load: () => {
+      // Load user data from the API
       return GetReq(`https://dummyjson.com/users/${window.user.id}`).then(
         (res) => {
           return [res];
@@ -13,6 +15,7 @@ var ProfileConfig = {
       );
     },
     update: (key, values) => {
+      // Update user data in the API
       return PutReq(`https://dummyjson.com/users/${key}`, values).then(() => {
         Toast("User updated", "success");
       });
@@ -24,7 +27,7 @@ var ProfileConfig = {
       dataType: "number",
       caption: "ID",
       validationRules: [{ type: "required" }],
-      allowEditing: false,
+      allowEditing: false, // Disable editing for the ID field
     },
     {
       dataField: "firstName",
@@ -76,18 +79,23 @@ var ProfileConfig = {
     },
   ],
 
-  showRowLines: true,
-  showBorders: true,
-  columnAutoWidth: true,
+  showRowLines: true, 
+  showBorders: true, 
+  columnAutoWidth: true, 
 
   editing: {
     mode: "form",
-    allowUpdating: true,
-    useIcons: true,
-    selectTextOnEditStart: true,
+    allowUpdating: true, 
+    useIcons: true, 
+    selectTextOnEditStart: true, 
   },
 };
 
+/**
+ * Retrieves the profile configuration.
+ *
+ * @returns {Object} The profile configuration object.
+ */
 function GetProfileConfig() {
   return ProfileConfig;
 }

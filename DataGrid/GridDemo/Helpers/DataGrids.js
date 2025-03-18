@@ -3,6 +3,9 @@ import { GetMyPostsConfig } from "../DataGrid/MyPostsConfig.js";
 import { GetProfileConfig } from "../DataGrid/ProfileConfig.js";
 import { GetUsersConfig } from "../DataGrid/UsersConfig.js";
 
+// Array of grid configuration objects
+// with name for dropDown and
+// config for function to get congiguration
 var gridTypes = [
   {
     id: 1,

@@ -2,6 +2,7 @@ import { GetReq, PutReq, DeleteReq } from "../Helpers/ApiServices.js";
 import { Toast } from "../Helpers/Utils.js";
 
 var MyPostsConfig = {
+  // customStore to fetch , update or remove posts from url
   dataSource: new DevExpress.data.CustomStore({
     key: "id",
     loadMode: "raw",
@@ -31,7 +32,7 @@ var MyPostsConfig = {
       dataField: "id",
       dataType: "number",
       caption: "ID",
-      allowEditing: false,
+      allowEditing: false, // Disables editing for the ID field
     },
     {
       dataField: "title",
@@ -55,6 +56,7 @@ var MyPostsConfig = {
           dataField: "reactions.likes",
           dataType: "number",
           caption: "👍 Likes",
+          // custom headerFilters for specified likes ranges
           headerFilter: {
             dataSource: [
               {
@@ -94,6 +96,7 @@ var MyPostsConfig = {
           dataType: "number",
           caption: "👎 Dislikes",
           headerFilter: {
+            // custom headerFilters for specified dislikes ranges
             dataSource: [
               {
                 text: "Dislikes: 0-10",
@@ -151,13 +154,12 @@ var MyPostsConfig = {
     useIcons: true,
   },
 
-  // textArea for body of post in masterDetail
   masterDetail: {
     enabled: true,
-    // template for masteDetail
     template: (container, options) => {
       const data = options.data;
       var dataSource = options.component.getDataSource();
+      // textArea for body of post in masterDetail
       $("<div>")
         .dxTextArea({
           value: data.body,
@@ -174,6 +176,11 @@ var MyPostsConfig = {
   },
 };
 
+/**
+ * Retrieves the configuration for MyPosts DataGrid.
+ * 
+ * @returns {Object} The configuration object for MyPosts.
+ */
 function GetMyPostsConfig() {
   return MyPostsConfig;
 }

@@ -1,29 +1,34 @@
 import { PostReq, GetReq, PutReq, DeleteReq } from "../Helpers/ApiServices.js";
 import { Toast } from "../Helpers/Utils.js";
 
+// Configuration for the Users data grid
 var UsersConfig = {
   dataSource: new DevExpress.data.CustomStore({
     key: "id",
     loadMode: "raw",
     load: () => {
+      // Load user data from the API
       return GetReq(`https://dummyjson.com/users?limit=208`).then((res) => {
         return res.users;
       });
     },
 
     update: (key, values) => {
+      // Update user data in the API
       return PutReq(`https://dummyjson.com/users/${key}`, values).then(() => {
         Toast("User Updated", "success");
       });
     },
 
     insert: (values) => {
+      // Insert new user data into the API
       return PostReq(`https://dummyjson.com/users/add`, values).then(() => {
         Toast("User added", "success");
       });
     },
 
     remove: (key) => {
+      // Remove user data from the API
       return DeleteReq(`https://dummyjson.com/users/${key}`).then(() => {
         Toast("User Deleted", "success");
       });
@@ -34,7 +39,7 @@ var UsersConfig = {
       dataField: "id",
       dataType: "number",
       caption: "ID",
-      allowEditing: false,
+      allowEditing: false, // Disable editing for the ID field
       allowGrouping: false,
     },
     {
@@ -116,7 +121,7 @@ var UsersConfig = {
     showPageSizeSelector: true,
     allowedPageSizes: [5, 10, 15, "all"],
     showNavigationButtons: true,
-    displayMode: "compact",
+    displayMode: "compact", // Compact display mode for better Adaptability
   },
 
   grouping: {
@@ -138,28 +143,28 @@ var UsersConfig = {
     selectAllMode: "page",
   },
 
-  // group summary
+  // Group summary
   summary: {
     groupItems: [
       {
         name: "countSummary",
         column: "id",
-        summaryType: "count",
+        summaryType: "count", // Count summary
       },
       {
         column: "age",
-        summaryType: "min",
+        summaryType: "min", // Minimum age summary
         displayFormat: "Min : {0} years",
         alignByColumn: true,
       },
     ],
   },
 
-  // for enabling exporting
   export: {
     enabled: true,
-    allowExportSelectedData: true,
+    allowExportSelectedData: true, // Allow exporting selected data
   },
+  // method to handle excel exporting
   onExporting(e) {
     const workbook = new ExcelJS.Workbook();
     const worksheet = workbook.addWorksheet("Users");
@@ -168,7 +173,7 @@ var UsersConfig = {
       .exportDataGrid({
         component: e.component,
         worksheet,
-        autoFilterEnabled: true, // to get header filter in excel
+        autoFilterEnabled: true, // Enable header filter in Excel
       })
       .then(() => {
         workbook.xlsx.writeBuffer().then((buffer) => {
@@ -183,6 +188,11 @@ var UsersConfig = {
   },
 };
 
+/**
+ * Retrieves the users configuration.
+ *
+ * @returns {Object} The users configuration object.
+ */
 function GetUsersConfig() {
   return UsersConfig;
 }

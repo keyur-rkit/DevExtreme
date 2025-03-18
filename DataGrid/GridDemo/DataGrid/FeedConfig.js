@@ -1,6 +1,7 @@
 import { GetReq, PutReq, DeleteReq } from "../Helpers/ApiServices.js";
 import { Toast } from "../Helpers/Utils.js";
 
+// Array of grid editing objects with role
 var editingByRoles = [
   {
     role: "admin",
@@ -29,7 +30,9 @@ var editingByRoles = [
   },
 ];
 
+// Configuration for Feed DataGrid
 var FeedConfig = {
+  // CustomStore to fetch, remove or update data from url
   dataSource: new DevExpress.data.CustomStore({
     key: "id",
     loadMode: "raw",
@@ -55,7 +58,7 @@ var FeedConfig = {
       dataField: "id",
       dataType: "number",
       caption: "ID",
-      allowEditing: false,
+      allowEditing: false, // Disables editing for the ID field
     },
     {
       dataField: "title",
@@ -67,7 +70,7 @@ var FeedConfig = {
       dataField: "tags",
       dataType: "string",
       caption: "Tags",
-      // column template
+      // column template to handle mutliple value in one line
       cellTemplate: (container, options) => {
         container.text(options.value.join(", "));
       },
@@ -82,6 +85,7 @@ var FeedConfig = {
           caption: "👍 Likes",
           validationRules: [{ type: "required" }],
           headerFilter: {
+            // custom headerFilters for specified likes ranges
             dataSource: [
               {
                 text: "Likes: 0-500",
@@ -121,6 +125,7 @@ var FeedConfig = {
           caption: "👎 Dislikes",
           validationRules: [{ type: "required" }],
           headerFilter: {
+            // custom headerFilters for specified dislikes ranges
             dataSource: [
               {
                 text: "Dislikes: 0-10",
@@ -184,16 +189,15 @@ var FeedConfig = {
     showPageSizeSelector: true,
     allowedPageSizes: [5, 10, 15, "all"],
     showNavigationButtons: true,
-    displayMode: "compact",
+    displayMode: "compact", // compact for better Adaptability
   },
 
-  // textArea for body of post in masterDetail
   masterDetail: {
     enabled: true,
-    // template for masteDetail
     template: (container, options) => {
       const data = options.data;
       var dataSource = options.component.getDataSource();
+      // textArea for body of post in masterDetail
       $("<div>")
         .dxTextArea({
           value: data.body,
@@ -219,7 +223,7 @@ var FeedConfig = {
     visible: true,
   },
 
-  // total summary (grid summary)
+  // total summary for count , max likes and min dislikes
   summary: {
     totalItems: [
       {
@@ -245,7 +249,7 @@ var FeedConfig = {
     ],
   },
 
-  // toolbar for appearance
+  // toolbar for appearance options
   onToolbarPreparing: (e) => {
     var toolbarItems = e.toolbarOptions.items;
     toolbarItems.push(
@@ -283,10 +287,13 @@ var FeedConfig = {
   },
 };
 
+/**
+ * Retrieves the feed configuration based on the user's role.
+ *
+ * @returns {Object} Updated feed configuration object.
+ */
 function GetFeedConfig() {
-  var user = JSON.parse(sessionStorage.getItem("user"));
-  var role = user ? user.role : "user";
-
+  var role = window.user ? window.user.role : "user";
   var roleData = editingByRoles.find((item) => item.role === role);
   var editing = roleData ? roleData.editing : {};
   FeedConfig.editing = editing;
