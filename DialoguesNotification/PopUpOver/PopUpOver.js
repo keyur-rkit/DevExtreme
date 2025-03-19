@@ -77,8 +77,8 @@ $(document).ready(() => {
       ],
 
       contentTemplate: () => {
-        const $scrollView = $("<div/>");
-        $scrollView.append(
+        var scrollView = $("<div/>");
+        scrollView.append(
           $(
             "<p><strong>One Piece</strong> is a Japanese manga series written and illustrated by Eiichiro Oda.</p>"
           ),
@@ -91,12 +91,12 @@ $(document).ready(() => {
           })
         );
 
-        $scrollView.dxScrollView({
+        scrollView.dxScrollView({
           width: "100%",
           height: "100%",
         });
 
-        return $scrollView;
+        return scrollView;
       },
 
       title: "One Piece(Popup)",
@@ -169,8 +169,8 @@ $(document).ready(() => {
       ],
 
       contentTemplate: () => {
-        const $scrollView = $("<div/>");
-        $scrollView.append(
+        var scrollView = $("<div/>");
+        scrollView.append(
           $(
             "<p><strong>Demon Slayer: Kimetsu no Yaiba</strong>  is a Japanese manga series written and illustrated by Koyoharu Gotouge.</p>"
           ),
@@ -183,12 +183,12 @@ $(document).ready(() => {
           })
         );
 
-        $scrollView.dxScrollView({
+        scrollView.dxScrollView({
           width: "100%",
           height: "100%",
         });
 
-        return $scrollView;
+        return scrollView;
       },
 
       title: "Demon slayer (Popover)",

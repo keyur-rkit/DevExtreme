@@ -1,8 +1,18 @@
 $(document).ready(() => {
+  var dummyImgUrl =
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRk9YCFdwTn7Fc0x-ug4IQUGb9Q5EDQC-bPhQ&s";
+
   // popup to show from to get anime data
   var popupInst = $("#addChildPopup")
     .dxPopup({
-      title: "New Anime Data",
+      titleTemplate: (e) => {
+        // console.log(e);
+        return $(`<a href="https://www.google.com" target="_blank">`).html(
+          `<img src=${dummyImgUrl} height="50" width="50" />`
+        );
+      },
+      title: "New Anime Data", // not work with titleTemplate
+
       fullScreen: true,
       visible: false,
       contentTemplate: (contentElement) => {
