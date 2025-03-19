@@ -16,6 +16,31 @@
 
     <!-- DevExtreme library -->
     <script type="text/javascript" src="../Scripts/dx.all.js"></script>
+
+    <style>
+      .outer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: 300px;
+        height: 300px;
+        margin: 0 auto;
+        border: 1px solid #ccc;
+        padding: 20px;
+        border-radius: 8px;
+      }
+
+      #animeImg {
+        max-width: 100%;
+        max-height: 80%;
+      }
+    </style>
   </head>
 
   <body class="dx-viewport">
@@ -24,12 +49,16 @@
     <div id="addAnimeMenu"></div>
     <div id="addChildPopup"></div>
 
-    <div id="animeTreeView"></div>
-
     <div id="toast"></div>
-
     <div id="loadPanel"></div>
 
+    <div class="outer">
+      <div id="animeTreeView"></div>
+      <div id="dataContainer" class="container">
+        <div id="desc"></div>
+        <img id="animeImg" src="" alt="" />
+      </div>
+    </div>
     <script src="data.js"></script>
     <script src="Demo.js"></script>
   </body>

@@ -1,4 +1,5 @@
 $(document).ready(() => {
+  // popup to show from to get anime data
   var popupInst = $("#addChildPopup")
     .dxPopup({
       title: "New Anime Data",
@@ -6,16 +7,25 @@ $(document).ready(() => {
       visible: false,
       contentTemplate: (contentElement) => {
         contentElement.append(
+          // form to get anime data in popup
           $('<div id="childForm">').dxForm({
             formData: {},
             items: [
-              { dataField: "id", label: { text: "ID" }, isRequired: true },
               {
                 dataField: "name",
                 label: { text: "Name" },
                 isRequired: true,
               },
-              { dataField: "desc", label: { text: "Description" } },
+              {
+                dataField: "desc",
+                label: { text: "Description" },
+                isRequired: true,
+              },
+              {
+                dataField: "img",
+                label: { text: "Image Url" },
+                isRequired: true,
+              },
               {
                 dataField: "parentId",
                 label: { text: "Anime Data Type" },
@@ -31,6 +41,7 @@ $(document).ready(() => {
           })
         );
       },
+      // custom save and close buttons
       toolbarItems: [
         {
           widget: "dxButton",
@@ -41,10 +52,11 @@ $(document).ready(() => {
             onClick: () => {
               var formInst = $("#childForm").dxForm("instance");
               var formData = formInst.option("formData");
-              // console.log(formInst.validate().isValid);
+              // validate form fields
               if (formInst.validate().isValid) {
-                console.log(formData);
+                // if all field presents then add data
                 animeData.insert(formData).then(() => {
+                  // loadPanel for 1.5s
                   panelInst.option("visible", true);
                   setTimeout(() => {
                     panelInst.option("visible", false);
@@ -62,7 +74,7 @@ $(document).ready(() => {
           toolbar: "bottom",
           options: {
             icon: "close",
-            onClick: (e) => {
+            onClick: () => {
               popupInst.hide();
             },
           },
@@ -71,6 +83,7 @@ $(document).ready(() => {
     })
     .dxPopup("instance");
 
+  // toast configuration
   var toastInst = $("#toast")
     .dxToast({
       message: "Anime Data Added",
@@ -84,51 +97,69 @@ $(document).ready(() => {
     })
     .dxToast("instance");
 
+  // loadPanel configuration
   var panelInst = $("#loadPanel")
     .dxLoadPanel({
       visible: false,
       closeOnOutsideClick: true,
-      container: "#addChildPopup",
+      container: "#addChildPopup", // container to show popup
       showPane: true, // box behind indicator or message
     })
     .dxLoadPanel("instance");
 
+  // menu to add anime data by type
   $("#addAnimeMenu").dxMenu({
     dataSource: parentItems,
     displayExpr: "name",
-    onItemClick: (e) => {
-      console.log(e);
-      setTimeout(() => {
-        // Delay ensures the content is fully rendered before accessing it
-        var formInst = $("#childForm").dxForm("instance");
-        console.log(formInst); // Now it should return a valid instance
 
-        popupInst.show();
-      }, 100); // A short delay ensures content rendering
+    // handle click of menu items
+    onItemClick: (e) => {
+      popupInst.show();
+      // change title of popup as menu clicked
+      popupInst.option("title", e.itemData.name);
+
+      var formInst = $("#childForm").dxForm("instance");
+      var parentIdEditor = formInst.getEditor("parentId");
+
+      // setting AnimeDataType as item clicked and
+      // make it readOnly for disable editing
+      parentIdEditor.option("value", e.itemData.id);
+      parentIdEditor.option("readOnly", true);
     },
   });
+
+  // treeView to show anime Data
   var treeViewInst = $("#animeTreeView")
     .dxTreeView({
       dataSource: animeData,
-      dataStructure: "plain", // 'plain' | 'tree' (default)
+      dataStructure: "plain",
 
-      itemsExpr: "objects", // Specifies which data field contains nested items in data
-      displayExpr: "name", // default "text"
-      // disabled items that have "locked" true in data
-      // default "disabled"
+      itemsExpr: "objects",
+      displayExpr: "name",
       disabledExpr: "locked",
-      keyExpr: "id", // default "id"
       parentIdExpr: "parentId", // Specifies which data field contains the parent ID
       rootValue: null, // Root value of parentId
 
-      expandEvent: "click", // default "dblClick"
+      expandEvent: "click",
 
-      // can use dxTextBox
       searchEditorOptions: {
         stylingMode: "underlined",
       },
       searchEnabled: true,
       searchExpr: "name",
+
+      // show img and desc as treeview item clicked
+      onItemClick: (e) => {
+        var desc = e.itemData.desc;
+        var img = e.itemData.img;
+        if (desc) {
+          $("#desc").text(desc);
+          $("#animeImg").attr("src", img);
+        }
+      },
     })
     .dxTreeView("instance");
 });
+
+// dummy img url to test by adding new item
+// https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQS1jN43VAAtUclbqteK1VkpnoP_5GGSfNy1Q&s
