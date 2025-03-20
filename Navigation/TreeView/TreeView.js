@@ -29,7 +29,7 @@ $(document).ready(() => {
       // we can change that behaviour using this option
       expandNodesRecursive: false,
 
-      // can use dxTextBox
+      // can use dxTextBox options
       searchEditorOptions: {
         stylingMode: "underlined",
       },
@@ -37,7 +37,7 @@ $(document).ready(() => {
       searchExpr: "name",
       searchMode: "startswith", // 'contains' (default) | 'startswith' | 'equals'
       searchTimeout: 500,
-      searchValue: "a", // default searchValue
+      searchValue: "", // default searchValue
 
       selectionMode: "multiple", // 'multiple' (default) | 'single'
       showCheckBoxesMode: "selectAll", // 'none' (default) | 'normal' | 'selectAll'(require multiple)
@@ -45,24 +45,20 @@ $(document).ready(() => {
       // selectByClick: true, // default false
       selectAllText: "All", // default 'Select All'
 
-      animationEnabled: false, // default true
-
       itemHoldTimeout: 1000, // default 750
 
       noDataText: "hehe! No data here", // custom text
 
-      onItemHold: () => {
-        alert("item held for 1 sec");
+      onItemHold: (e) => {
+        alert(`${e.itemData.name} held for 1 sec`);
       },
 
       // defaults false , nodes are loaded on demand , only for "plain"
       // virtualModeEnabled: true,
 
       onItemClick: (e) => {
-        //   console.log(e);
         var desc = e.itemData.desc;
         var img = e.itemData.img;
-        //   console.log(img);
         if (desc) {
           $("#dataContainer").attr("class", "container");
           $("#desc").text(desc);
@@ -71,9 +67,7 @@ $(document).ready(() => {
       },
 
       onSelectionChanged: (e) => {
-        // console.log(e);
-        var selectedItems = treeViewInst.getSelectedNodeKeys();
-        //   console.log(selectedItems);
+        var selectedItems = e.component.getSelectedNodeKeys();
         $("#selected").text(`Selected Items: ${selectedItems}`);
       },
     })
@@ -89,10 +83,7 @@ $(document).ready(() => {
 });
 
 /*
-// animationEnabled
-createChildren
-hasItemsExpr
-scrollDirection
+// animationEnable
 // dataSource
 // dataStructure
 // disabledExpr

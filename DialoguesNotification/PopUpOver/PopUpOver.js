@@ -130,10 +130,6 @@ $(document).ready(() => {
       visible: false,
       closeOnOutsideClick: true,
       showCloseButton: false, // close btn in top-right
-      // dragEnabled: true, // default true for desktop
-
-      container: "#popupContainer", // which to render popup.
-      position: "right", // default { my: 'center', at: 'center', of: window }
 
       // custom toolbarItems
       toolbarItems: [
@@ -202,6 +198,7 @@ $(document).ready(() => {
 
       /// different then popup
       target: "#hoverLink", // target element ? can we give multiple
+      position: "right", // default { my: 'center', at: 'center', of: window }
       showEvent: {
         name: "mouseenter",
         delay: 0,

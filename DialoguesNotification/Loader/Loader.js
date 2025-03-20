@@ -3,25 +3,52 @@ $(document).ready(() => {
     text: "Show",
     onClick: () => {
       indicatorInst.option("visible", true);
-        panelInst.show();
+      panelInst.show();
     },
   });
   $("#hideLoadButton").dxButton({
     text: "Hide",
     onClick: () => {
       indicatorInst.option("visible", false);
-        panelInst.hide();
-
+      panelInst.hide();
     },
   });
   var indicatorInst = $("#loadIndicator")
     .dxLoadIndicator({
-      visible: true,
-      indicatorSrc: "/DialoguesNotification/Loader/loader.gif",
-      height: 100,
-      width: 100,
+      visible: false,
+      indicatorSrc: "/DialoguesNotification/Loader/loader2.gif",
+      height: "100%",
+      width: "100%",
     })
     .dxLoadIndicator("instance");
+
+  var customStore = new DevExpress.data.CustomStore({
+    key: "id",
+    loadMode: "raw",
+    load: () => {
+      return $.ajax({
+        url: "https://67adeabb9e85da2f020bb443.mockapi.io/anime",
+        method: "GET",
+      }).then((data) => {
+        return new Promise((resolve) => {
+          setTimeout(() => resolve(data), 2000); // Delay 2 seconds
+        });
+      });
+    },
+    onLoading: () => {
+      indicatorInst.option("visible", true);
+    },
+    onLoaded: () => {
+      indicatorInst.option("visible", false);
+    },
+  });
+
+  var grid2Instance = $("#gridContainer")
+    .dxDataGrid({
+      dataSource: customStore,
+      showBorders: true,
+    })
+    .dxDataGrid("instance");
 
   var panelInst = $("#loadPanel")
     .dxLoadPanel({
